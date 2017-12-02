@@ -37,6 +37,6 @@ public class Camera {
 	}
 	
 	public boolean canSee(Entity e) {
-		return (e.getX() > x) && (e.getX() <  x+ width) && (e.getY() > y) && (e.getY() < y + height);
+		return (e.getX() + e.getWidth() > x) && (e.getX() <  x+ width) && (e.getY() + e.getHeight() > y) && (e.getY() < y + height);
 	}
 }
