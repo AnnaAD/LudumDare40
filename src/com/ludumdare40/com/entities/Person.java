@@ -22,7 +22,6 @@ public class Person extends Creature{
         super(x, y, img, health);
         state = States.IDLE;
         velocity = new Vector2f(0f,0f);
-        World.worldwidth
     }
     
     public void update(GameContainer gc, int delta) {
