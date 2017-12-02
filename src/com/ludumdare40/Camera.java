@@ -21,7 +21,7 @@ public class Camera {
 	public void render(GameContainer gc, Graphics g) {
 		width = gc.getWidth();
 		height = gc.getHeight();
-		ArrayList<Entity> eList = world.getEntities();
+		ArrayList<Entity> eList = new ArrayList<>(world.getEntities());
 		eList.addAll(world.getBullets());
 		Player p = world.getPlayer();
 		p.render(g, p.getX()-x,p.getY() - y);

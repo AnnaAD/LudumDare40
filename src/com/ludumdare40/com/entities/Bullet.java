@@ -7,7 +7,7 @@ import org.newdawn.slick.Image;
 
 public class Bullet extends Entity {
     //The speed of the bullets
-    private final float SPEED = .02f;
+    private final float SPEED = .5f;
     public Vector2f velocity;
     /** Age in ms*/
     public int age;
@@ -23,8 +23,9 @@ public class Bullet extends Entity {
 
     public void update(GameContainer gc, int delta){
         age += delta;
-        x += velocity.x * delta;
-        y += velocity.y * delta;
+        System.out.println("Velocity.x :"+velocity.x +"Velocity.y:"+velocity.y + "Magnitude " + velocity.length());
+        x = x + velocity.getX() *delta;
+        y = y + velocity.getY()*delta ;
     }
 
     public void render(GameContainer gc, Graphics g) {
