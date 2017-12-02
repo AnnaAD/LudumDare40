@@ -1,5 +1,7 @@
 package com.ludumdare40;
 
-public class World {
+import java.util.ArrayList;
 
+public class World {
+	private ArrayList<Entity> entities;
 }

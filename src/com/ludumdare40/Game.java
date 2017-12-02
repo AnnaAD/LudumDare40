@@ -26,7 +26,6 @@ public class Game extends BasicGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-	
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {
