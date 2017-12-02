@@ -9,6 +9,7 @@ import org.newdawn.slick.Input;
 
 public class World {
 	private ArrayList<Entity> entities;
+	/** width and height of map*/
 	private float width;
 	private float height;
 	private Player player;
