@@ -11,12 +11,13 @@ public class StaticEntity extends Entity {
         switch (type) {
             case TREE:
                 collider.setOffsetX(24);
-                collider.setOffsetY(168);
+                collider.setOffsetY(169);
                 collider.setWidth(50);
-                collider.setHeight(210-168);
+                collider.setHeight(img.getHeight()-169);
                 break;
             case ROCK:
-
+                 collider.setOffsetY((int) (img.getHeight()/1.5));
+                 collider.setHeight(img.getHeight() - (int) (img.getHeight()/1.5));
                 break;
         }
     }
