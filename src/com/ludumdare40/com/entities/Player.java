@@ -4,14 +4,14 @@ import com.ludumdare40.com.entities.Entity;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 
-public class Player extends Entity {
+public class Player extends Creature {
 	private float moveX;
 	private float moveY;
 	//The amount of food a player has
 	private int food;
 	
-	public Player(float x, float y, Image img) {
-		super(x, y, img);
+	public Player(float x, float y, Image img, int health) {
+		super(x, y, img, health);
 	}
 	
 	public void update(GameContainer gc, int delta) {

@@ -3,25 +3,25 @@ package com.ludumdare40.com.entities;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 
-public class Monster extends Entity {
+public class Monster extends Creature{
     //TODO: Add movement and attacking
     /** from 0 to maxHealth*/
     int health;
 
     public final float STARTING_HEALTH = 40;
     public final float SPEED = 1;
-    public final float DAMAGE = 1;
-    private Entity target;
+    public final int DAMAGE = 1;
+    private Creature target;
 
-    public Monster(int x, int y, Image img) {
-        super(x, y, img);
+    public Monster(int x, int y, Image img, int health) {
+        super(x, y, img, health);
     }
 
     public Entity getTarget() {
 		return target;
 	}
 
-	public void setTarget(Entity target) {
+	public void setTarget(Creature target) {
 		this.target = target;
 	}
 
@@ -38,10 +38,13 @@ public class Monster extends Entity {
     	} else {
     		y -= .07*delta;
     	}
-    }
-
-    private void die() {
     	
+    	if(collider.collidesWith(target.collider)) {
+    		while(collider.collidesWith(target.collider)) {
+    			x--;
+    		}
+    		target.hurt(DAMAGE);
+    	}
     }
     
     private float distanceTo(Entity e) {

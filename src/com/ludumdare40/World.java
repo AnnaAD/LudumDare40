@@ -33,7 +33,7 @@ public class World {
 	}
 
 	public void update(GameContainer gc, int delta) {
-		System.out.println("Player x:"+player.getX() + "Player y:"+player.getY());
+		//System.out.println("Player x:"+player.getX() + "Player y:"+player.getY());
 		handlePlayerMovementAndCollisions(gc, delta);
 	}
 	
@@ -44,7 +44,7 @@ public class World {
 	private void generateTerrain() {
 		Monster m = null;
 		try{
-			m = new Monster(300, 300, new Image("res/sampleimage.png"));
+			m = new Monster(300, 300, new Image("res/sampleimage.png"), 10);
 		} catch(SlickException exception) {
 			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
 		}		

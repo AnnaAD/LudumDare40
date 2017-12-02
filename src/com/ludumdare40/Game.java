@@ -54,7 +54,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
-		player = new Player(WORLDWIDTH / 2 - 100,WORLDHEIGHT/2,playerImg);
+		player = new Player(WORLDWIDTH / 2 - 100,WORLDHEIGHT/2,playerImg, 50);
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera(world);
 		gc.getGraphics().setBackground(new Color(0x65c160));

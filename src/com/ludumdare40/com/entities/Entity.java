@@ -4,7 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Entity {
+public abstract class Entity {
 	protected float x;
 	protected float y;
 	protected Image img;
