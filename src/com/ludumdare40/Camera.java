@@ -10,17 +10,28 @@ public class Camera {
 	private float y;
 	private float width;
 	private float height;
+	private World world;
 	
-	public void render(GameContainer gc, Graphics g, World world) {
+	public void Camera(World world) {
+		this.world = world;
+	}
+	
+	public void render(GameContainer gc, Graphics g) {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = world.getEntities();
 		
 		for(Entity e : eList) {
 			if(canSee(e)) {
-				e.render(g);
+				e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
+	}
+	
+	public void centerOnEntity(Entity e) {
+		//TODO: add clamp
+		x = e.getX() - width/2;
+		y = e.getY() - height/2;
 	}
 	
 	public boolean canSee(Entity e) {
