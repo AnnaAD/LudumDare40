@@ -9,12 +9,15 @@ public class Monster extends Creature{
     int health;
 
     public final float STARTING_HEALTH = 40;
-    public final float SPEED = 1;
+    public final float SPEED = 0.7f;
     public final float DAMAGE = 0.1f;
+    
+    private float vx;
+    private float vy;
     private Creature target;
 
-    public Monster(int x, int y, Image img, float health) {
-        super(x, y, img, health);
+    public Monster(float f, float g, Image img, float health) {
+        super(f, g, img, health);
     }
 
     public Entity getTarget() {
@@ -27,21 +30,26 @@ public class Monster extends Creature{
 
 	@Override
     public void update(GameContainer gc, int delta) {
-    	if(target.getX() > x) {
-    		x += .07*delta;
+		x += vx*delta;
+		y += vy*delta;
+		//vx *= 0.8*delta;
+		//vy *= 0.8*delta;
+    	if(target.getX() > x  && Math.abs(vx) < SPEED) {
+    		vx += .01f;
     	} else {
-    		x -= .07*delta;
+    		vx += -.01f;
     	}
     	
-    	if(target.getY() > y) {
-    		y += .07*delta;
+    	if(target.getY() > y && Math.abs(vy) < SPEED) {
+    		vy += .01f;
     	} else {
-    		y -= .07*delta;
+    		vy += -.01f;
     	}
     	
     	if(collider.collidesWith(target.collider)) {
     		while(collider.collidesWith(target.collider)) {
-    			x--;
+    			y-=vy*delta;
+    			x-=vx*delta;
     		}
     		target.hurt(DAMAGE);
     	}
