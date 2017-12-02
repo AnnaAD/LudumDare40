@@ -7,6 +7,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import com.ludumdare40.ui.Button;
+
 import org.newdawn.slick.*;
 
 public class Game extends BasicGameState {
@@ -17,6 +20,7 @@ public class Game extends BasicGameState {
 	private World world;
 	private Player player;
 	private Image playerImg;
+	private Button button;
 
 	public Game() {
 		super();
@@ -32,11 +36,18 @@ public class Game extends BasicGameState {
 		player.update(gc, delta);
 		world.update(gc, delta);
 		camera.centerOnEntity(player);
+		
+		if(gc.getInput().isMousePressed(0)) {
+			if(button.checkClicked(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
+				System.out.println("click");
+			}
+		}
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		camera.render(gc, g);
-		g.drawString("Food:" +player.getFood(), 10, 5);
+		g.drawString("Food:" + player.getFood(), 10, 5);
+		button.render(gc, g);
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {
@@ -48,6 +59,7 @@ public class Game extends BasicGameState {
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera(world);
 		gc.getGraphics().setBackground(new Color(0x65c160));
+		button = new Button(10,30,50,20,"Hello");
 	}
 
 	@Override
