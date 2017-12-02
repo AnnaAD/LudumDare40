@@ -32,7 +32,7 @@ public class Monster extends Creature{
     public void update(GameContainer gc, int delta) {
 		x += vx*delta;
 		y += vy*delta;
-		System.out.println(Math.abs(target.getX() - x));
+		//System.out.println(Math.abs(target.getX() - x));
 		if(Math.abs(target.getX() - x) > 20) {
 	    	if(target.getX() > x  && vx < SPEED) {
 	    		vx += .01f;
@@ -61,8 +61,6 @@ public class Monster extends Creature{
     	}
     }
     
-    private float distanceTo(Entity e) {
-    	return (float) Math.sqrt(Math.pow(e.getX()-x, 2) + Math.pow(e.getY()-y, 2));
-    }
+
 }
 

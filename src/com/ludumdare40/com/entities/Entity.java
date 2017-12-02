@@ -66,6 +66,10 @@ public abstract class Entity {
 	public void update(GameContainer gc, int delta) {
 	}
 
+	public float distanceTo(Entity e) {
+		return (float) Math.sqrt(Math.pow(e.getX()-x, 2) + Math.pow(e.getY()-y, 2));
+	}
+
 	public static class Monster extends Entity {
         //TODO: Add movement and attacking
         /** from 0 to maxHealth*/
@@ -99,8 +103,6 @@ public abstract class Entity {
 
         }
 
-        private float distanceTo(Entity e) {
-            return (float) Math.sqrt(Math.pow(e.getX()-x, 2) + Math.pow(e.getY()-y, 2));
-        }
+
     }
 }

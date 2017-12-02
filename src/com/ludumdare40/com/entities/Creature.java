@@ -1,9 +1,11 @@
 package com.ludumdare40.com.entities;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Vector2f;
 
 public abstract class Creature extends Entity {
-	private float health;
+	protected float health;
+	protected Vector2f velocity;
 	
 	public Creature(float x, float y, Image img, float health) {
 		super(x, y, img);
