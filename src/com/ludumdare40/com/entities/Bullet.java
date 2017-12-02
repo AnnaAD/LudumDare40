@@ -8,6 +8,7 @@ import org.newdawn.slick.Image;
 public class Bullet extends Entity {
     //The speed of the bullets
     private final float SPEED = .5f;
+    public static final float DAMAGE = 3;
     public Vector2f velocity;
     /** Age in ms*/
     public int age;

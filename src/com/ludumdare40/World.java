@@ -147,6 +147,21 @@ public class World {
 		for(int i = bullets.size() - 1; i>=0; i--){
 			Bullet b = bullets.get(i);
 			b.update(gc, delta);
+			if(Math.abs(b.getX() - player.getX()) > gc.getWidth() * 2 || Math.abs(b.getX() - player.getX()) > gc.getWidth() * 2){
+				bullets.remove(b);
+			} else {
+				for(Entity e : entities) {
+					if (b.getCollider().collidesWith(e.getCollider())) {
+						if (e instanceof StaticEntity)
+							bullets.remove(b);
+						else if (e instanceof Creature) {
+							((Creature) (e)).hurt(Bullet.DAMAGE);
+							bullets.remove(b);
+						}
+					}
+				}
+
+			}
 		}
 	}
 
