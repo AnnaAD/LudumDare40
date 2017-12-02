@@ -18,6 +18,7 @@ public class World {
 	private float width;
 	private float height;
 	private Player player;
+	private StaticEntity campfire;
 
 	public ArrayList<Entity> getEntities() {
 		return entities;
@@ -78,7 +79,14 @@ public class World {
 				System.out.println("ERROR: UNABLE TO LOAD ROCK IMAGE");
 			}
 		}
+		try {
+			this.campfire = new StaticEntity(player.getX() + 100, player.getY() + 100, StaticEntity.Type.CAMPFIRE, new Image("res/sampleimage.png"));
+			entities.add(campfire);
+		} catch( Exception e) {
+			System.out.println("UNABLE TO LOAD CAMPFIRE IMAGE");
+		}
 	}
+
 
 	private void handlePlayerMovementAndCollisions(GameContainer gc, int delta) {
 		float intendedDeltaX = 0;
