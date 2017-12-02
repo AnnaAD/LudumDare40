@@ -2,6 +2,10 @@ package com.ludumdare40;
 
 import java.util.ArrayList;
 
+import com.ludumdare40.com.entities.Entity;
+import com.ludumdare40.com.entities.Food;
+import com.ludumdare40.com.entities.Player;
+import com.ludumdare40.com.entities.StaticEntity;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Image;
@@ -27,47 +31,7 @@ public class World {
 	}
 
 	public void update(GameContainer gc, int delta) {
-		float intendedDeltaX = 0;
-		float intendedDeltaY = 0;
-		
-		if(gc.getInput().isKeyDown(Input.KEY_LEFT)) {
-			intendedDeltaX = -0.1f;
-		} else if(gc.getInput().isKeyDown(Input.KEY_RIGHT)) {
-			intendedDeltaX = 0.1f;
-		}
-		
-		if(gc.getInput().isKeyDown(Input.KEY_UP)) {
-			intendedDeltaY = -0.1f;
-		} else if(gc.getInput().isKeyDown(Input.KEY_DOWN)){
-			intendedDeltaY = 0.1f;
-		}
-
-		for(int i = entities.size() - 1; i>=0; i--) {
-			Entity e = entities.get(i);
-			e.update(gc, delta);
-			
-			if(player.getCollider().willCollideWith(e.getCollider(), 0, intendedDeltaY*delta)) {
-				if (e instanceof Food){
-					entities.remove(e);
-					player.incrementFood(((Food) e).getFoodValue());
-				} else {
-					intendedDeltaY = 0;
-				}
-			}
-			if(player.getCollider().willCollideWith(e.getCollider(), intendedDeltaX*delta, 0)) {
-				if (e instanceof Food){
-					entities.remove(e);
-					player.incrementFood(((Food) e).getFoodValue());
-				} else {
-					intendedDeltaX = 0;
-				}
-			}
-		}
-		
-		player.setMoveX(intendedDeltaX);
-		player.setMoveY(intendedDeltaY);
-
-
+		handlePlayerMovementAndCollisions(gc, delta);
 	}
 	
 	public Player getPlayer() {
@@ -93,5 +57,48 @@ public class World {
 				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
 			}
 		}
+	}
+
+	private void handlePlayerMovementAndCollisions(GameContainer gc, int delta) {
+		float intendedDeltaX = 0;
+		float intendedDeltaY = 0;
+
+		if(gc.getInput().isKeyDown(Input.KEY_LEFT)) {
+			intendedDeltaX = -0.1f;
+		} else if(gc.getInput().isKeyDown(Input.KEY_RIGHT)) {
+			intendedDeltaX = 0.1f;
+		}
+
+		if(gc.getInput().isKeyDown(Input.KEY_UP)) {
+			intendedDeltaY = -0.1f;
+		} else if(gc.getInput().isKeyDown(Input.KEY_DOWN)){
+			intendedDeltaY = 0.1f;
+		}
+		intendedDeltaY = intendedDeltaY*delta;
+		intendedDeltaX = intendedDeltaX*delta;
+
+		for(int i = entities.size() - 1; i>=0; i--) {
+			Entity e = entities.get(i);
+			e.update(gc, delta);
+
+			if(player.getCollider().willCollideWith(e.getCollider(), 0, intendedDeltaY)) {
+				if (e instanceof Food){
+					entities.remove(e);
+					player.incrementFood(((Food) e).getFoodValue());
+				} else {
+					intendedDeltaY = 0;
+				}
+			}
+			if(player.getCollider().willCollideWith(e.getCollider(), intendedDeltaX, 0)) {
+				if (e instanceof Food){
+					entities.remove(e);
+					player.incrementFood(((Food) e).getFoodValue());
+				} else {
+					intendedDeltaX = 0;
+				}
+			}
+		}
+		player.moveX(intendedDeltaX);
+		player.moveY(intendedDeltaY);
 	}
 }

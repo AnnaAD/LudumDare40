@@ -19,12 +19,20 @@ public class Player extends Entity {
 		y += moveY*delta;
 		
 	}
-	
-	public void setMoveX(float x) {
+
+	/**
+	 *  Moves the player x amount, - is left, + is right
+	 * @param x Amount it will move (include delta).
+	 */
+	public void moveX(float x) {
 		moveX = x;
 	}
-	
-	public void setMoveY(float y) {
+
+	/**
+	 *  Moves the player t amount, - is up, + is down
+	 * @param y Amount it will move (include delta).
+	 */
+	public void moveY(float y) {
 		moveY = y;
 	}
 	

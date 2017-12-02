@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 
 public class Food extends Entity {
     private int foodValue;
-    protected enum Type {BERRY};
+    public enum Type {BERRY};
 
     public Food(float x, float y, Type type, Image img) {
         super(x, y, img);

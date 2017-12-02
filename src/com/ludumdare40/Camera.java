@@ -2,6 +2,8 @@ package com.ludumdare40;
 
 import java.util.ArrayList;
 
+import com.ludumdare40.com.entities.Entity;
+import com.ludumdare40.com.entities.Player;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
@@ -20,7 +22,7 @@ public class Camera {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = world.getEntities();
-		Player p = world.getPlayer(); 
+		Player p = world.getPlayer();
 		p.render(g, p.getX()-x,p.getY() - y);
 		
 		for(Entity e : eList) {
