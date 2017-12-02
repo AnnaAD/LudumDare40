@@ -2,6 +2,8 @@ package com.ludumdare40;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.GameContainer;
+
 public class World {
 	private ArrayList<Entity> entities;
 	float width;
@@ -16,9 +18,9 @@ public class World {
 		this.height = height;
 	}
 
-	public void update(int delta) {
+	public void update(GameContainer gc, int delta) {
 		for(Entity e: entities) {
-			e.update(delta);
+			e.update(gc, delta);
 		}
 	}
 }

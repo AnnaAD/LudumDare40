@@ -27,8 +27,8 @@ public class Game extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta) throws SlickException {
-		player.update(delta);
-		world.update(delta);
+		player.update(gc, delta);
+		world.update(gc, delta);
 		camera.centerOnEntity(player);
 	}
 
