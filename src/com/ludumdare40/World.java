@@ -51,7 +51,7 @@ public class World {
 		m.setTarget(player);
 		entities.add(m);
 		
-		for(int i = 0; i < (int)(Math.random() * 60 + 40); i++) {
+		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
 			float x = (float)(Math.random()) * width;
 			float y = (float)(Math.random()) * height;
 			try{
@@ -60,7 +60,7 @@ public class World {
 				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
 			}
 		}
-		for(int i = 0; i < (int)(Math.random() * 60 + 20); i++) {
+		for(int i = 0; i < (int)(Math.random() * 40 + 500); i++) {
 			float x = (float)(Math.random()) * width;
 			float y = (float)(Math.random()) * height;
 			try{
@@ -70,7 +70,7 @@ public class World {
 			}
 		}
 		
-		for(int i = 0; i < (int)(Math.random() * 60 + 40); i++) {
+		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
 			float x = (float)(Math.random()) * width;
 			float y = (float)(Math.random()) * height;
 			try{
