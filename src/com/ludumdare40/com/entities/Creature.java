@@ -10,6 +10,10 @@ public abstract class Creature extends Entity {
 		this.health = health;
 	}
 
+	public int getHealth() {
+		return health;
+	}
+
 	public void hurt(int damage) {
 		health -= damage;
 	}
