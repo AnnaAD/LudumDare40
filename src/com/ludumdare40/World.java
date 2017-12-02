@@ -55,6 +55,8 @@ public class World {
 		
 		player.setMoveX(intendedDeltaX);
 		player.setMoveY(intendedDeltaY);
+
+
 	}
 	
 	public Player getPlayer() {

@@ -7,6 +7,8 @@ import org.newdawn.slick.Input;
 public class Player extends Entity {
 	private float moveX;
 	private float moveY;
+	//The amount of food a player has
+	private int food;
 	
 	public Player(float x, float y, Image img) {
 		super(x, y, img);
@@ -26,5 +28,11 @@ public class Player extends Entity {
 		moveY = y;
 	}
 	
+	public int getFood() {
+		return food;
+	}
 
+	public void incrementFood(int amount) {
+		food += amount;
+	}
 }
