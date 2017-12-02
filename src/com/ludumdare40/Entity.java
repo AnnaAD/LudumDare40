@@ -1,5 +1,6 @@
 package com.ludumdare40;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
@@ -45,6 +46,6 @@ public class Entity {
 	 *
 	 * @param delta The time in ms since the last update.
 	 */
-	public void update(int delta) {
+	public void update(GameContainer gc, int delta) {
 	}
 }
