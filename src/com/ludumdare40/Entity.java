@@ -31,12 +31,20 @@ public class Entity {
 		return img;
 	}
 
-
-	public void render(Graphics g) {
-
+	/**
+	 * Renders the entity
+	 * @param g The graphics object
+	 * @param x The absolute x position relative to the screen
+	 * @param y The absolute y position
+	 */
+	public void render(Graphics g, int x, int y) {
+		img.draw(x,y);
 	}
-	
+
+	/**
+	 *
+	 * @param delta The time in ms since the last update.
+	 */
 	public void update(int delta) {
-		
 	}
 }
