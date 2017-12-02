@@ -10,10 +10,10 @@ public class Monster extends Creature{
 
     public final float STARTING_HEALTH = 40;
     public final float SPEED = 1;
-    public final int DAMAGE = 1;
+    public final float DAMAGE = 0.1f;
     private Creature target;
 
-    public Monster(int x, int y, Image img, int health) {
+    public Monster(int x, int y, Image img, float health) {
         super(x, y, img, health);
     }
 

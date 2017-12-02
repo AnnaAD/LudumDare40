@@ -10,7 +10,7 @@ public class Player extends Creature {
 	//The amount of food a player has
 	private int food;
 	
-	public Player(float x, float y, Image img, int health) {
+	public Player(float x, float y, Image img, float health) {
 		super(x, y, img, health);
 	}
 	

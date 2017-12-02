@@ -46,7 +46,7 @@ public class Game extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		camera.render(gc, g);
 		g.drawString("Food:" + player.getFood(), 10, 5);
-		g.drawString("Health:" + player.getHealth(), 10, 20);
+		g.drawString("Health:" + (int) player.getHealth(), 10, 20);
 		button.render(gc, g);
 	}
 

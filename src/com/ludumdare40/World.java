@@ -92,15 +92,15 @@ public class World {
 		float intendedDeltaX = 0;
 		float intendedDeltaY = 0;
 
-		if(gc.getInput().isKeyDown(Input.KEY_LEFT)) {
+		if(gc.getInput().isKeyDown(Input.KEY_A)) {
 			intendedDeltaX = -0.1f;
-		} else if(gc.getInput().isKeyDown(Input.KEY_RIGHT)) {
+		} else if(gc.getInput().isKeyDown(Input.KEY_D)) {
 			intendedDeltaX = 0.1f;
 		}
 
-		if(gc.getInput().isKeyDown(Input.KEY_UP)) {
+		if(gc.getInput().isKeyDown(Input.KEY_W)) {
 			intendedDeltaY = -0.1f;
-		} else if(gc.getInput().isKeyDown(Input.KEY_DOWN)){
+		} else if(gc.getInput().isKeyDown(Input.KEY_S)){
 			intendedDeltaY = 0.1f;
 		}
 		intendedDeltaY = intendedDeltaY*delta;
