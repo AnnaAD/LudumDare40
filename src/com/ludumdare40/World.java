@@ -29,6 +29,7 @@ public class World {
 	public void update(GameContainer gc, int delta) {
 		float intendedDeltaX = 0;
 		float intendedDeltaY = 0;
+		
 		if(gc.getInput().isKeyDown(Input.KEY_LEFT)) {
 			intendedDeltaX = -0.1f;
 		} else if(gc.getInput().isKeyDown(Input.KEY_RIGHT)) {
@@ -43,9 +44,12 @@ public class World {
 		
 		for(Entity e: entities) {
 			e.update(gc, delta);
-			if(player.getCollider().willCollideWith(e.getCollider(), intendedDeltaX*delta, intendedDeltaY*delta)) {
-				intendedDeltaX = 0;
+			
+			if(player.getCollider().willCollideWith(e.getCollider(), 0, intendedDeltaY*delta)) {
 				intendedDeltaY = 0;
+			}
+			if(player.getCollider().willCollideWith(e.getCollider(), intendedDeltaX*delta, 0)) {
+				intendedDeltaX = 0;
 			}
 		}
 		

@@ -18,9 +18,14 @@ public class Monster extends Entity {
 
     @Override
     public void update(GameContainer gc, int delta) {
-
+    	
     }
 
     private void die() {
+    	
+    }
+    
+    private float distanceTo(Entity e) {
+    	return (float) Math.sqrt(Math.pow(e.getX()-x, 2) + Math.pow(e.getY()-y, 2));
     }
 }
