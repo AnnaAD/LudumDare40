@@ -43,9 +43,9 @@ public class Game extends BasicGameState {
 	}
 
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
-		world = new World(WORLDWIDTH, WORLDHEIGHT);
+		player = new Player(100,100,playerImg);
+		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera();
-		player = new Player(10,10,playerImg);
 	}
 
 	@Override

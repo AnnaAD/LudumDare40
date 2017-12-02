@@ -19,7 +19,6 @@ public class Camera {
 	public void render(GameContainer gc, Graphics g) {
 		width = gc.getWidth();
 		height = gc.getHeight();
-		System.out.println(world.getEntities());
 		ArrayList<Entity> eList = world.getEntities();
 		
 		for(Entity e : eList) {
