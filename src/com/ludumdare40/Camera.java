@@ -20,14 +20,15 @@ public class Camera {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = world.getEntities();
+		Player p = world.getPlayer(); 
+		p.render(g, p.getX()-x,p.getY() - y);
 		
 		for(Entity e : eList) {
 			if(canSee(e)) {
 				e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
-		Player p = world.getPlayer(); 
-		p.render(g, p.getX()-x,p.getY() - y);
+		
 	}
 	
 	public void centerOnEntity(Entity e) {

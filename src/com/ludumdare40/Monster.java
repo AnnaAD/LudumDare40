@@ -11,6 +11,7 @@ public class Monster extends Entity {
     public final float STARTING_HEALTH = 40;
     public final float SPEED = 1;
     public final float DAMAGE = 1;
+    private Entity target;
 
     public Monster(int x, int y, Image img) {
         super(x, y, img);
@@ -18,7 +19,17 @@ public class Monster extends Entity {
 
     @Override
     public void update(GameContainer gc, int delta) {
+    	if(target.getX() > x) {
+    		x += .07*delta;
+    	} else {
+    		x -= .07*delta;
+    	}
     	
+    	if(target.getY() > y) {
+    		y += .07*delta;
+    	} else {
+    		y -= .07*delta;
+    	}
     }
 
     private void die() {
