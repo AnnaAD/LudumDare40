@@ -14,7 +14,7 @@ public class Game extends BasicGameState {
 
 	public Game() {
 		super();
-		System.out.println("Constructor");
+		System.out.println("Game initiated");
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
