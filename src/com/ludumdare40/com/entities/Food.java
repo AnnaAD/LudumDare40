@@ -1,5 +1,6 @@
-package com.ludumdare40;
+package com.ludumdare40.com.entities;
 
+import com.ludumdare40.com.entities.Entity;
 import org.newdawn.slick.Image;
 
 public class Food extends Entity {

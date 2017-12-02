@@ -1,8 +1,8 @@
-package com.ludumdare40;
+package com.ludumdare40.com.entities;
 
+import com.ludumdare40.com.entities.Entity;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 
 public class Player extends Entity {
 	private float moveX;

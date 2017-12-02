@@ -1,4 +1,4 @@
-package com.ludumdare40;
+package com.ludumdare40.com.entities;
 
 public class Collider {
 	private float width;
