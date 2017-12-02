@@ -35,6 +35,7 @@ public class World {
 		//System.out.println("Player x:"+player.getX() + "Player y:"+player.getY());
 		handlePlayerMovementAndCollisions(gc, delta);
 		handleBullets(gc, delta);
+		removeDeadCreatures();
 	}
 	
 	public Player getPlayer() {
