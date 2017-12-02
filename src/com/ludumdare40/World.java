@@ -16,6 +16,7 @@ public class World {
 	public World(float width, float height) {
 		this.width = width;
 		this.height = height;
+		entities = new ArrayList<Entity>();
 	}
 
 	public void update(GameContainer gc, int delta) {

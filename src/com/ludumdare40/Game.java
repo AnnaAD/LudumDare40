@@ -16,6 +16,7 @@ public class Game extends BasicGameState {
 	private Camera camera;
 	private World world;
 	private Player player;
+	private Image playerImg;
 
 	public Game() {
 		super();
@@ -23,6 +24,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		playerImg = new Image("res/sampleimage.png");
 		setupNewGame(gc, sbg);
 	}
 
@@ -43,7 +45,7 @@ public class Game extends BasicGameState {
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
 		world = new World(WORLDWIDTH, WORLDHEIGHT);
 		camera = new Camera();
-		player = new Player(10,10,img);
+		player = new Player(10,10,playerImg);
 	}
 
 	@Override
