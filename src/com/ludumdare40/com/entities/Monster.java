@@ -9,8 +9,8 @@ public class Monster extends Creature{
     int health;
 
     public final float STARTING_HEALTH = 40;
-    public final float SPEED = 0.7f;
-    public final float DAMAGE = 0.1f;
+    public final float SPEED = 0.08f;
+    public final float DAMAGE = 1;
     
     private float vx;
     private float vy;
@@ -32,26 +32,32 @@ public class Monster extends Creature{
     public void update(GameContainer gc, int delta) {
 		x += vx*delta;
 		y += vy*delta;
-		//vx *= 0.8*delta;
-		//vy *= 0.8*delta;
-    	if(target.getX() > x  && Math.abs(vx) < SPEED) {
-    		vx += .01f;
-    	} else {
-    		vx += -.01f;
-    	}
-    	
-    	if(target.getY() > y && Math.abs(vy) < SPEED) {
-    		vy += .01f;
-    	} else {
-    		vy += -.01f;
-    	}
+		System.out.println(Math.abs(target.getX() - x));
+		if(Math.abs(target.getX() - x) > 20) {
+	    	if(target.getX() > x  && vx < SPEED) {
+	    		vx += .01f;
+	    	} else if (vx > -SPEED) {
+	    		vx -= .01f;
+	    	}
+		}
+		
+		
+	    if(Math.abs(target.getY() - y) > 20) {	
+	    	if(target.getY() > y && vy < SPEED) {
+	    		vy += .01f;
+	    	} else if (vy > -SPEED){
+	    		vy -= .01f;
+	    	}
+	    }
     	
     	if(collider.collidesWith(target.collider)) {
+    		target.hurt(DAMAGE);
     		while(collider.collidesWith(target.collider)) {
     			y-=vy*delta;
     			x-=vx*delta;
+    			vx *= -2;
+    			vy *= -2;
     		}
-    		target.hurt(DAMAGE);
     	}
     }
     
