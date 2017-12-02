@@ -18,4 +18,8 @@ public abstract class Creature extends Entity {
 		health -= damage;
 	}
 
+	public boolean isDead(){
+		return health <= 0;
+	}
+
 }

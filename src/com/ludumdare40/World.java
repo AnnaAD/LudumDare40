@@ -151,6 +151,7 @@ public class World {
 				bullets.remove(b);
 			} else {
 				for(Entity e : entities) {
+
 					if (b.getCollider().collidesWith(e.getCollider())) {
 						if (e instanceof StaticEntity)
 							bullets.remove(b);
@@ -167,5 +168,12 @@ public class World {
 
 	public ArrayList<Bullet> getBullets(){
 		return bullets;
+	}
+
+	private void removeDeadCreatures(){
+		for(int i = entities.size() - 1; i>=0; i--) {
+			if(entities.get(i) instanceof Creature && ((Creature) entities.get(i)).isDead())
+				entities.remove(i);
+		}
 	}
 }
