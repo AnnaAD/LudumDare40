@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ludumdare40.com.entities.Entity;
 import com.ludumdare40.com.entities.Food;
+import com.ludumdare40.com.entities.Monster;
 import com.ludumdare40.com.entities.Player;
 import com.ludumdare40.com.entities.StaticEntity;
 import org.newdawn.slick.GameContainer;
@@ -40,6 +41,15 @@ public class World {
 	}
 
 	private void generateTerrain() {
+		Monster m = null;
+		try{
+			m = new Monster(300, 300, new Image("res/sampleimage.png"));
+		} catch(SlickException exception) {
+			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
+		}		
+		m.setTarget(player);
+		entities.add(m);
+		
 		for(int i = 0; i < (int)(Math.random() * 20 + 20); i++) {
 			float x = (float)(Math.random()) * 3000f - 1500f;
 			float y = (float)(Math.random()) * 3000f - 1500f;
