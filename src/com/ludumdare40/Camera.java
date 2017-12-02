@@ -26,6 +26,8 @@ public class Camera {
 				e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
+		Player p = world.getPlayer(); 
+		p.render(g, p.getX()-x,p.getY() - y);
 	}
 	
 	public void centerOnEntity(Entity e) {

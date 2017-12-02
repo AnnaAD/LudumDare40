@@ -14,6 +14,7 @@ public class Entity {
 		this.x = x;
 		this.y = y;
 		this.img = img;
+		this.collider = new Collider(this, img.getWidth(), img.getHeight());
 	}
 
 	public Entity(float x, float y){
