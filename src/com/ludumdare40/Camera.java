@@ -22,6 +22,7 @@ public class Camera {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = world.getEntities();
+		eList.addAll(world.getBullets());
 		Player p = world.getPlayer();
 		p.render(g, p.getX()-x,p.getY() - y);
 		

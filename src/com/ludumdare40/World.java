@@ -2,11 +2,8 @@ package com.ludumdare40;
 
 import java.util.ArrayList;
 
-import com.ludumdare40.com.entities.Entity;
-import com.ludumdare40.com.entities.Food;
-import com.ludumdare40.com.entities.Monster;
-import com.ludumdare40.com.entities.Player;
-import com.ludumdare40.com.entities.StaticEntity;
+import com.ludumdare40.com.entities.*;
+import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Image;
@@ -19,6 +16,7 @@ public class World {
 	private float height;
 	private Player player;
 	private StaticEntity campfire;
+	private ArrayList<Bullet> bullets;
 
 	public ArrayList<Entity> getEntities() {
 		return entities;
@@ -28,6 +26,7 @@ public class World {
 		this.width = width;
 		this.height = height;
 		entities = new ArrayList<Entity>();
+		bullets = new ArrayList<> ();
 		this.player = player;
 		generateTerrain();
 	}
@@ -35,6 +34,7 @@ public class World {
 	public void update(GameContainer gc, int delta) {
 		//System.out.println("Player x:"+player.getX() + "Player y:"+player.getY());
 		handlePlayerMovementAndCollisions(gc, delta);
+		handleBullets(gc, delta);
 	}
 	
 	public Player getPlayer() {
@@ -129,5 +129,28 @@ public class World {
 		}
 		player.moveX(intendedDeltaX);
 		player.moveY(intendedDeltaY);
+	}
+
+	private void handleBullets(GameContainer gc, int delta) {
+		if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+			float xComponent = gc.getInput().getMouseX() - gc.getWidth()/2;
+			float yComponent = gc.getInput().getMouseY() - gc.getHeight()/2;
+			Vector2f velocity = new Vector2f(xComponent, yComponent);
+
+			try{
+			bullets.add(new Bullet(player.getX(), player.getY(), new Image("res/bullet.png"),velocity));
+			}catch( Exception e){
+				System.out.println("COULDN'T LOAD BULLET IMAGE FROM FILE");
+			}
+		}
+
+		for(int i = bullets.size() - 1; i>=0; i--){
+			Bullet b = bullets.get(i);
+			b.update(gc, delta);
+		}
+	}
+
+	public ArrayList<Bullet> getBullets(){
+		return bullets;
 	}
 }
