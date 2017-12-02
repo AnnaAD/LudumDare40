@@ -18,12 +18,12 @@ public class Player extends Entity {
 		}
 		
 		if(gc.getInput().isKeyDown(Input.KEY_UP)) {
-			y += .1*delta;
-		} else if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {
 			y -= .1*delta;
+		} else if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {
+			y += .1*delta;
 		}
 		
-		System.out.println(x + " " + y);
+		//System.out.println(x + " " + y);
 		
 	}
 	
