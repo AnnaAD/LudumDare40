@@ -6,7 +6,7 @@ public class Food extends Entity {
     private int foodValue;
     protected enum Type {BERRY};
 
-    public Food(int x, int y, Image img, Type type) {
+    public Food(float x, float y, Type type, Image img) {
         super(x, y, img);
         switch(type) {
             case BERRY:

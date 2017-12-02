@@ -41,15 +41,26 @@ public class World {
 		} else if(gc.getInput().isKeyDown(Input.KEY_DOWN)){
 			intendedDeltaY = 0.1f;
 		}
-		
-		for(Entity e: entities) {
+
+		for(int i = entities.size() - 1; i>=0; i--) {
+			Entity e = entities.get(i);
 			e.update(gc, delta);
 			
 			if(player.getCollider().willCollideWith(e.getCollider(), 0, intendedDeltaY*delta)) {
-				intendedDeltaY = 0;
+				if (e instanceof Food){
+					entities.remove(e);
+					player.incrementFood(((Food) e).getFoodValue());
+				} else {
+					intendedDeltaY = 0;
+				}
 			}
 			if(player.getCollider().willCollideWith(e.getCollider(), intendedDeltaX*delta, 0)) {
-				intendedDeltaX = 0;
+				if (e instanceof Food){
+					entities.remove(e);
+					player.incrementFood(((Food) e).getFoodValue());
+				} else {
+					intendedDeltaX = 0;
+				}
 			}
 		}
 		
@@ -69,6 +80,15 @@ public class World {
 			float y = (float)(Math.random()) * 3000f - 1500f;
 			try{
 				entities.add(new StaticEntity(x, y, StaticEntity.Type.TREE, new Image("res/tree.png")));
+			} catch(SlickException exception) {
+				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
+			}
+		}
+		for(int i = 0; i < (int)(Math.random() * 20 + 20); i++) {
+			float x = (float)(Math.random()) * 3000f - 1500f;
+			float y = (float)(Math.random()) * 3000f - 1500f;
+			try{
+				entities.add(new Food(x, y, Food.Type.BERRY, new Image("res/berry.png")));
 			} catch(SlickException exception) {
 				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
 			}
