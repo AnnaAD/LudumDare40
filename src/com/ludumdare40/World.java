@@ -51,18 +51,18 @@ public class World {
 		m.setTarget(player);
 		entities.add(m);
 		
-		for(int i = 0; i < (int)(Math.random() * 20 + 20); i++) {
-			float x = (float)(Math.random()) * 3000f - 1500f;
-			float y = (float)(Math.random()) * 3000f - 1500f;
+		for(int i = 0; i < (int)(Math.random() * 60 + 40); i++) {
+			float x = (float)(Math.random()) * width;
+			float y = (float)(Math.random()) * height;
 			try{
 				entities.add(new StaticEntity(x, y, StaticEntity.Type.TREE, new Image("res/tree.png")));
 			} catch(SlickException exception) {
 				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
 			}
 		}
-		for(int i = 0; i < (int)(Math.random() * 20 + 20); i++) {
-			float x = (float)(Math.random()) * 3000f - 1500f;
-			float y = (float)(Math.random()) * 3000f - 1500f;
+		for(int i = 0; i < (int)(Math.random() * 60 + 20); i++) {
+			float x = (float)(Math.random()) * width;
+			float y = (float)(Math.random()) * height;
 			try{
 				entities.add(new Food(x, y, Food.Type.BERRY, new Image("res/berry.png")));
 			} catch(SlickException exception) {
@@ -70,9 +70,9 @@ public class World {
 			}
 		}
 		
-		for(int i = 0; i < (int)(Math.random() * 20 + 20); i++) {
-			float x = (float)(Math.random()) * 3000f - 1500f;
-			float y = (float)(Math.random()) * 3000f - 1500f;
+		for(int i = 0; i < (int)(Math.random() * 60 + 40); i++) {
+			float x = (float)(Math.random()) * width;
+			float y = (float)(Math.random()) * height;
 			try{
 				entities.add(new StaticEntity(x, y, StaticEntity.Type.ROCK, new Image("res/rock.png")));
 			} catch(SlickException exception) {
@@ -80,7 +80,7 @@ public class World {
 			}
 		}
 		try {
-			this.campfire = new StaticEntity(player.getX() + 100, player.getY() + 100, StaticEntity.Type.CAMPFIRE, new Image("res/sampleimage.png"));
+			this.campfire = new StaticEntity(width/2, height/2, StaticEntity.Type.CAMPFIRE, new Image("res/campfire.png"));
 			entities.add(campfire);
 		} catch( Exception e) {
 			System.out.println("UNABLE TO LOAD CAMPFIRE IMAGE");
