@@ -12,9 +12,9 @@ public class Leader extends StateBasedGame {
 	public static final int GAMEOVER = 1;
 
 	// Application Properties
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
-	public static final int FPS = 240;
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 750;
+	public static final int FPS = 60;
 	public static final double VERSION = 1.0;
 
 	// Class Constructor
