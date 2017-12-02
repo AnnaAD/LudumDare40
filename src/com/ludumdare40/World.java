@@ -15,4 +15,10 @@ public class World {
 		this.width = width;
 		this.height = height;
 	}
+
+	public void update(int delta) {
+		for(Entity e: entities) {
+			e.update(delta);
+		}
+	}
 }
