@@ -139,7 +139,7 @@ public class World {
 			Vector2f velocity = new Vector2f(xComponent, yComponent);
 
 			try{
-				bullets.add(new Bullet(player.getX(), player.getY(), new Image("res/bullet.png"),velocity));
+				bullets.add(new Bullet(player.getX() + player.getWidth()/2, player.getY() + player.getHeight()/2, new Image("res/bullet.png"),velocity));
 			}catch( Exception e){
 				System.out.println("COULDN'T LOAD BULLET IMAGE FROM FILE");
 			}
