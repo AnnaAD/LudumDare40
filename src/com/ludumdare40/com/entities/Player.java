@@ -15,8 +15,6 @@ public class Player extends Entity {
 	}
 	
 	public void update(GameContainer gc, int delta) {
-		x += moveX*delta;
-		y += moveY*delta;
 		
 	}
 
@@ -25,7 +23,7 @@ public class Player extends Entity {
 	 * @param x Amount it will move (include delta).
 	 */
 	public void moveX(float x) {
-		moveX = x;
+		this.x += x;
 	}
 
 	/**
@@ -33,7 +31,7 @@ public class Player extends Entity {
 	 * @param y Amount it will move (include delta).
 	 */
 	public void moveY(float y) {
-		moveY = y;
+		this.y += y;
 	}
 	
 	public int getFood() {
