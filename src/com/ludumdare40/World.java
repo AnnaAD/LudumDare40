@@ -31,6 +31,7 @@ public class World {
 	}
 
 	public void update(GameContainer gc, int delta) {
+		System.out.println("Player x:"+player.getX() + "Player y:"+player.getY());
 		handlePlayerMovementAndCollisions(gc, delta);
 	}
 	
