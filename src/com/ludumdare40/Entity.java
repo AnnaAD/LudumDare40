@@ -32,6 +32,10 @@ public class Entity {
 	public Image getImg() {
 		return img;
 	}
+	
+	public Collider getCollider() {
+		return collider;
+	}
 
 	/**
 	 * Renders the entity

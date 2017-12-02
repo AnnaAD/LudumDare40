@@ -11,13 +11,22 @@ public class Collider {
 		this.height = height;
 	}
 	
-	public boolean checkCol(Collider c) {
+	public boolean collidesWith(Collider c) {
 		Collider rect1 = this;
 		Collider rect2 = c;
 		return rect1.getX() < rect2.getX() + rect2.getWidth() &&
 				   rect1.getX() + rect1.getWidth() > rect2.getX() &&
 				   rect1.getY() < rect2.getY() + rect2.getHeight() &&
 				   rect1.getHeight() + rect1.getY() > rect2.getY();
+	}
+	
+	public boolean willCollideWith(Collider c, float deltaX, float deltaY) {
+		Collider rect1 = this;
+		Collider rect2 = c;
+		return rect1.getX()+deltaX < rect2.getX() + rect2.getWidth() &&
+				   rect1.getX()+deltaX + rect1.getWidth() > rect2.getX() &&
+				   rect1.getY()+deltaY < rect2.getY() + rect2.getHeight() &&
+				   rect1.getHeight() + rect1.getY() + deltaY > rect2.getY();
 	}
 
 	public float getWidth() {

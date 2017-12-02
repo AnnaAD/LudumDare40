@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 
 public class World {
 	private ArrayList<Entity> entities;
@@ -25,9 +26,30 @@ public class World {
 	}
 
 	public void update(GameContainer gc, int delta) {
+		float intendedDeltaX = 0;
+		float intendedDeltaY = 0;
+		if(gc.getInput().isKeyDown(Input.KEY_LEFT)) {
+			intendedDeltaX = -0.1f;
+		} else if(gc.getInput().isKeyDown(Input.KEY_RIGHT)) {
+			intendedDeltaX = 0.1f;
+		}
+		
+		if(gc.getInput().isKeyDown(Input.KEY_UP)) {
+			intendedDeltaY = -0.1f;
+		} else if(gc.getInput().isKeyDown(Input.KEY_DOWN)){
+			intendedDeltaY = 0.1f;
+		}
+		
 		for(Entity e: entities) {
 			e.update(gc, delta);
+			if(player.getCollider().willCollideWith(e.getCollider(), intendedDeltaX*delta, intendedDeltaY*delta)) {
+				intendedDeltaX = 0;
+				intendedDeltaY = 0;
+			}
 		}
+		
+		player.setMoveX(intendedDeltaX);
+		player.setMoveY(intendedDeltaY);
 	}
 	
 	public Player getPlayer() {
