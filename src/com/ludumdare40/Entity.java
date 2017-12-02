@@ -37,7 +37,7 @@ public class Entity {
 	 * @param x The absolute x position relative to the screen
 	 * @param y The absolute y position
 	 */
-	public void render(Graphics g, int x, int y) {
+	public void render(Graphics g, float x, float y) {
 		img.draw(x,y);
 	}
 

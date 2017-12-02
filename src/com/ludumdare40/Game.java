@@ -11,6 +11,11 @@ import org.newdawn.slick.*;
 
 public class Game extends BasicGameState {
 	public static final int ID = 0;
+	private static final int WORLDWIDTH = 10000;
+	private static final int WORLDHEIGHT = 10000;
+	private Camera camera;
+	private World world;
+	private Player player;
 
 	public Game() {
 		super();
@@ -22,10 +27,13 @@ public class Game extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame arg1, int delta) throws SlickException {
-		
+		player.update(delta);
+		world.update(delta);
+		camera.centerOnEntity(player);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		camera.render(gc, g);
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {
@@ -33,7 +41,9 @@ public class Game extends BasicGameState {
 	}
 
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
-		
+		world = new World(WORLDWIDTH, WORLDHEIGHT);
+		camera = new Camera();
+		player = new Player(10,10,img);
 	}
 
 	@Override

@@ -7,8 +7,12 @@ public class World {
 	float width;
 	float height;
 
-	
 	public ArrayList<Entity> getEntities() {
 		return entities;
+	}
+	
+	public World(float width, float height) {
+		this.width = width;
+		this.height = height;
 	}
 }
