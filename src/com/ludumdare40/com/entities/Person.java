@@ -1,5 +1,6 @@
 package com.ludumdare40.com.entities;
 
+import com.ludumdare40.World;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -22,7 +23,7 @@ public class Person extends Creature{
         super(x, y, img, health);
         state = States.IDLE;
         velocity = new Vector2f(0f,0f);
-        World.worldwidth
+
     }
     
     public void update(GameContainer gc, int delta) {
@@ -44,7 +45,7 @@ public class Person extends Creature{
                 if(Math.random()<.5) {YComponent *= -1;}
                 idleMovementTime = (int)(Math.random() * 3000 + 2000);
                 System.out.println("new x:"+XComponent * idleMovementTime + "new y: "+YComponent * idleMovementTime + "Current: " +x +"Current y" + y);
-                if(Math.abs(XComponent * idleMovementTime + width/2) < CAMPFIRE_AREA_BOUNDARY && Math.abs(YComponent * idleMovementTime) < CAMPFIRE_AREA_BOUNDARY)
+                if(Math.abs(XComponent * idleMovementTime + World.WIDTH/2) < CAMPFIRE_AREA_BOUNDARY + World.WIDTH && Math.abs(YComponent * idleMovementTime + World.HEIGHT/2) < CAMPFIRE_AREA_BOUNDARY + World.HEIGHT/2)
                     velocity = new Vector2f(XComponent, YComponent);
             } else {
                 idleMovementTime -= delta;

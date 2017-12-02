@@ -13,7 +13,7 @@ public class World {
 	private ArrayList<Entity> entities;
 	/** WIDTH and height of map*/
 	public static float WIDTH;
-	public static float height;
+	public static float HEIGHT;
 	private Player player;
 	private StaticEntity campfire;
 	private ArrayList<Bullet> bullets;
@@ -25,7 +25,7 @@ public class World {
 	
 	public World(float WIDTH, float height, Player player) {
 		this.WIDTH = WIDTH;
-		this.height = height;
+		this.HEIGHT = height;
 		entities = new ArrayList<Entity>();
 		bullets = new ArrayList<> ();
 		campMembers = new ArrayList<>();
@@ -48,7 +48,7 @@ public class World {
 	private void generateTerrain() {
 		Monster m = null;
 		try{
-			m = new Monster(WIDTH /2, height/2, new Image("res/sampleimage.png"), 10);
+			m = new Monster(WIDTH /2, HEIGHT /2, new Image("res/sampleimage.png"), 10);
 		} catch(SlickException exception) {
 			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
 		}		
@@ -57,7 +57,7 @@ public class World {
 		
 		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
 			float x = (float)(Math.random()) * WIDTH;
-			float y = (float)(Math.random()) * height;
+			float y = (float)(Math.random()) * HEIGHT;
 			try{
 				entities.add(new StaticEntity(x, y, StaticEntity.Type.TREE, new Image("res/tree.png")));
 			} catch(SlickException exception) {
@@ -66,7 +66,7 @@ public class World {
 		}
 		for(int i = 0; i < (int)(Math.random() * 40 + 500); i++) {
 			float x = (float)(Math.random()) * WIDTH;
-			float y = (float)(Math.random()) * height;
+			float y = (float)(Math.random()) * HEIGHT;
 			try{
 				entities.add(new Food(x, y, Food.Type.BERRY, new Image("res/berry.png")));
 			} catch(SlickException exception) {
@@ -76,7 +76,7 @@ public class World {
 		
 		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
 			float x = (float)(Math.random()) * WIDTH;
-			float y = (float)(Math.random()) * height;
+			float y = (float)(Math.random()) * HEIGHT;
 			try{
 				entities.add(new StaticEntity(x, y, StaticEntity.Type.ROCK, new Image("res/rock.png")));
 			} catch(SlickException exception) {
@@ -84,7 +84,7 @@ public class World {
 			}
 		}
 		try {
-			this.campfire = new StaticEntity(WIDTH /2, height/2, StaticEntity.Type.CAMPFIRE, new Image("res/campfire.png"));
+			this.campfire = new StaticEntity(WIDTH /2, HEIGHT /2, StaticEntity.Type.CAMPFIRE, new Image("res/campfire.png"));
 			entities.add(campfire);
 		} catch( Exception e) {
 			System.out.println("UNABLE TO LOAD CAMPFIRE IMAGE");
@@ -188,7 +188,7 @@ public class World {
 			if(Math.random() < .5 ) { x *= -1 ;}
 			if(Math.random() < .5 ) { y *= -1 ;}
 			try {
-				Person campmember = new Person(x + WIDTH /2, y + height/2, new Image("res/person.png"), (float)Math.random() *30f + 60f);
+				Person campmember = new Person(x + WIDTH /2, y + HEIGHT /2, new Image("res/person.png"), (float)Math.random() *30f + 60f);
 				entities.add(campmember);
 				campMembers.add(campmember);
 				System.out.println("Camp member x: " + campmember.getX() +"Camp member y: " + campmember.getY());
