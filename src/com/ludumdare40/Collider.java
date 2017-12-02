@@ -4,12 +4,23 @@ public class Collider {
 	private float width;
 	private float height;
 	private Entity parent;
+	private float offsetX;
+	private float offsetY;
 	
 	public Collider(Entity parent, float width, float height) {
 		this.parent = parent;
 		this.width = width;
 		this.height = height;
 	}
+	
+	public Collider(Entity parent, float offsetX, float offsetY, float width, float height) {
+		this.parent = parent;
+		this.width = width;
+		this.height = height;
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+	}
+	
 	
 	public boolean collidesWith(Collider c) {
 		Collider rect1 = this;
@@ -41,16 +52,24 @@ public class Collider {
 		return height;
 	}
 
+	public void setOffsetX(float offsetX) {
+		this.offsetX = offsetX;
+	}
+
+	public void setOffsetY(float offsetY) {
+		this.offsetY = offsetY;
+	}
+
 	public void setHeight(float height) {
 		this.height = height;
 	}
 
 	public float getX() {
-		return parent.getX();
+		return parent.getX() + offsetX;
 	}
 
 	public float getY() {
-		return parent.getY();
+		return parent.getY() + offsetY;
 	}
 
 
