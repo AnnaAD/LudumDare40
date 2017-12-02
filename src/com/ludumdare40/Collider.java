@@ -3,10 +3,10 @@ package com.ludumdare40;
 public class Collider {
 	private float width;
 	private float height;
-	private float x;
-	private float y;
+	private Entity parent;
 	
-	public Collider(float width, float height) {
+	public Collider(Entity parent, float width, float height) {
+		this.parent = parent;
 		this.width = width;
 		this.height = height;
 	}
@@ -37,18 +37,12 @@ public class Collider {
 	}
 
 	public float getX() {
-		return x;
-	}
-
-	public void setX(float x) {
-		this.x = x;
+		return parent.getX();
 	}
 
 	public float getY() {
-		return y;
+		return parent.getY();
 	}
 
-	public void setY(float y) {
-		this.y = y;
-	}
+
 }
