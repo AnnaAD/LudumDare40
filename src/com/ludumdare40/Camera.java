@@ -23,7 +23,7 @@ public class Camera {
 		
 		for(Entity e : eList) {
 			if(canSee(e)) {
-				e.render(g);
+				e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
 	}
