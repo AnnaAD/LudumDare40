@@ -46,6 +46,7 @@ public class Game extends BasicGameState {
 		player = new Player(100,100,playerImg);
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera(world);
+		gc.getGraphics().setBackground(new Color(0x65c160));
 	}
 
 	@Override
