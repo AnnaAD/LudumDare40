@@ -12,7 +12,7 @@ public class Camera {
 	private float height;
 	private World world;
 	
-	public void Camera(World world) {
+	public Camera(World world) {
 		this.world = world;
 	}
 	
