@@ -1,21 +1,37 @@
 package com.ludumdare40.com.entities;
 
 import com.ludumdare40.com.entities.Entity;
+
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 public class Player extends Creature {
 	private float moveX;
 	private float moveY;
+	private Animation anim;
 	//The amount of food a player has
 	private int food;
 	
 	public Player(float x, float y, Image img, float health) {
 		super(x, y, img, health);
+		try {
+			anim = new Animation(new SpriteSheet(new Image("res/player.png"), 32, 58), 100);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void update(GameContainer gc, int delta) {
-		
+		anim.setAutoUpdate(true);
+	}
+	
+	public void render(Graphics g, float x, float y) {
+		g.drawAnimation(anim, x, y);
 	}
 
 	/**
