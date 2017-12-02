@@ -45,7 +45,7 @@ public class World {
 	private void generateTerrain() {
 		Monster m = null;
 		try{
-			m = new Monster(width/2, height/2, new Image("res/sampleimage.png"), 10);
+			m = new Monster(width/2, height/2, new Image("res/monster.png"), 10);
 		} catch(SlickException exception) {
 			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
 		}		
