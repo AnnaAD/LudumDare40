@@ -9,12 +9,10 @@ public class StaticEntity extends Entity{
         super(x, y, img);
         switch (type) {
             case TREE:
-                collider.setWidth(32);
-                collider.setHeight(32);
+
                 break;
             case ROCK:
-                collider.setWidth(32);
-                collider.setHeight(32);
+
                 break;
         }
     }

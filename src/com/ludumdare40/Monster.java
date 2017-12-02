@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 
 public class Monster extends Entity {
+    //TODO: Add movement and attacking
     /** from 0 to maxHealth*/
     int health;
 
