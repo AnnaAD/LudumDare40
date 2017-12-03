@@ -1,5 +1,6 @@
 package com.ludumdare40.com.entities;
 
+import com.ludumdare40.ImageRes;
 import com.ludumdare40.com.entities.Entity;
 
 import org.newdawn.slick.Animation;
@@ -22,7 +23,7 @@ public class Player extends Creature {
 	
 	public Player(float x, float y, Image img, float health) {
 		super(x, y, img, health);
-		try {
+		/*try {
 			animRight = new Animation(new SpriteSheet(new Image("res/playerright.png"), 35,64), 500);
 			animLeft = new Animation(new SpriteSheet(new Image("res/playerleft.png"),35 ,64), 500);
 			animUp = new Animation(new SpriteSheet(new Image("res/playerfront.png"), 35,64), 500);
@@ -31,29 +32,37 @@ public class Player extends Creature {
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
+		animRight = new Animation(ImageRes.personSpriteSheet,0,1, 3,1,true, 200,false);
+		animUp = new Animation(ImageRes.personSpriteSheet,0,2,3,2,true, 200,false);
+		animLeft = new Animation(ImageRes.personSpriteSheet,0,3,3,3,true, 200,false);
+		animDown = new Animation(ImageRes.personSpriteSheet,0,0,3,0,true, 200,false);
+		
 		collider.setHeight(25);
 		collider.setOffsetY(animRight.getHeight()-25);
 	}
 	
 	public void update(GameContainer gc, int delta) {
-		animRight.update(delta);
-		animLeft.update(delta);
-		animUp.update(delta);
-		animDown.update(delta);
+		if(Math.abs(moveX) > 0 || Math.abs(moveY) > 0) {
+			animRight.update(delta);
+			animLeft.update(delta);
+			animUp.update(delta);
+			animDown.update(delta);
+		}
 	}
 	
 	public void render(Graphics g, float x, float y) {
 		if(moveY < 0) {
-			g.drawAnimation(animDown, x, y);
-		} else if (moveY > 0) {
 			g.drawAnimation(animUp, x, y);
+		} else if (moveY > 0) {
+			g.drawAnimation(animDown, x, y);
 		} else if(moveX > 0) {
 			g.drawAnimation(animRight, x, y);
 		} else if (moveX < 0) {
 			g.drawAnimation(animLeft, x, y);
 		} else {
-			g.drawImage(img, x, y);
+			g.drawAnimation(animLeft, x, y);
 		}
 	}
 

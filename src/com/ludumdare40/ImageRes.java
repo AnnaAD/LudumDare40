@@ -25,4 +25,9 @@ public class ImageRes {
 		treeImg = new Image("res/tree.png");
 		rockImg = new Image("res/rock.png");
 	}
+	
+	public static SpriteSheet getRandomPerson() {
+		return personSpriteSheet;
+		
+	}
 }

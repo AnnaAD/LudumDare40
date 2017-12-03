@@ -61,7 +61,7 @@ public class World {
 			
 		}
 
-		if(player.getHealth() <= 0 || campMembers.size() < 1) {
+		if(player.getHealth() <= 0) {
 			endGame = true;
 		}
 	}

@@ -42,7 +42,10 @@ public class Person extends Creature{
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
-
+        animRight = new Animation(ImageRes.getRandomPerson(),0,1, 3,1,true, 200,false);
+		animUp = new Animation(ImageRes.getRandomPerson(),0,2,3,2,true, 200,false);
+		animLeft = new Animation(ImageRes.getRandomPerson(),0,3,3,3,true, 200,false);
+		animDown = new Animation(ImageRes.getRandomPerson(),0,0,3,0,true, 200,false);
 
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
@@ -54,6 +57,13 @@ public class Person extends Creature{
     }
     
     public void update(GameContainer gc, int delta) {
+    	if(Math.abs(velocity.length()) > 0) {
+			animRight.update(delta);
+			animLeft.update(delta);
+			animUp.update(delta);
+			animDown.update(delta);
+		}
+    	
         hunger += delta;
         if(hunger > TIME_BETWEEN_FOOD && food > 0){
             food --;
@@ -95,7 +105,18 @@ public class Person extends Creature{
     }
     
     public void render(Graphics g, float x, float y) {
-    	super.render(g, x, y);
+    	
+    	if(velocity.getY() < 0) {
+			g.drawAnimation(animUp, x, y);
+		} else if (velocity.getY() > 0) {
+			g.drawAnimation(animDown, x, y);
+		} else if(velocity.getX()> 0) {
+			g.drawAnimation(animRight, x, y);
+		} else if (velocity.getX() < 0) {
+			g.drawAnimation(animLeft, x, y);
+		} else {
+			g.drawAnimation(animLeft, x, y);
+		}
     	
     	//Render UI Stuff
     	feedButton.setX(x);
