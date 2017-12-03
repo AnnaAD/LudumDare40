@@ -24,7 +24,7 @@ public class Bullet extends Entity {
 
     public void update(GameContainer gc, int delta){
         age += delta;
-        System.out.println("Velocity.x :"+velocity.x +"Velocity.y:"+velocity.y + "Magnitude " + velocity.length());
+        //System.out.println("Velocity.x :"+velocity.x +"Velocity.y:"+velocity.y + "Magnitude " + velocity.length());
         x = x + velocity.getX() *delta;
         y = y + velocity.getY()*delta ;
     }
