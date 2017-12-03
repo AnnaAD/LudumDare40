@@ -58,7 +58,7 @@ public class Game extends BasicGameState {
 		player = new Player(WORLDWIDTH / 2 - 100,WORLDHEIGHT/2,playerImg, 50);
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera(world);
-		gc.getGraphics().setBackground(new Color(0x65c160));
+		gc.getGraphics().setBackground(new Color(0x448E4B));
 		button = new Button(10,50,50,20,"Hello");
 	}
 
