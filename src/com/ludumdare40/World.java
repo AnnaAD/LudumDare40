@@ -23,8 +23,8 @@ public class World {
 		return entities;
 	}
 	
-	public World(float WIDTH, float height, Player player) {
-		this.WIDTH = WIDTH;
+	public World(float width, float height, Player player) {
+		this.WIDTH = width;
 		this.HEIGHT = height;
 		entities = new ArrayList<Entity>();
 		bullets = new ArrayList<> ();
@@ -182,9 +182,9 @@ public class World {
 
 	public void generateCreatures(){
 		Person.setCampfire(campfire);
-		for(int i = 0; i < 6; i++) {
-			float x = (float) Math.random() * 200f + campfire.getWidth() + 10f ;
-			float y = (float) Math.random() * 200f + campfire.getHeight() + 10f;
+		for(int i = 0; i < 1; i++) {
+			float x = (float) Math.random() * 100f + campfire.getWidth() + 10f ;
+			float y = (float) Math.random() * 100f + campfire.getHeight() + 10f;
 			if(Math.random() < .5 ) { x *= -1 ;}
 			if(Math.random() < .5 ) { y *= -1 ;}
 			try {

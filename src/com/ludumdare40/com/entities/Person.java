@@ -15,9 +15,9 @@ public class Person extends Creature{
     private int idleMovementTime;
     public static StaticEntity campfire;
 
-    private final float IDLE_SPEED = .2f;
-    private final float TRAVELLING_SPEED = .1f;
-    private final float CAMPFIRE_AREA_BOUNDARY = 400;
+    private final float IDLE_SPEED = .5f;
+    private final float TRAVELLING_SPEED = .001f;
+    private final float CAMPFIRE_AREA_BOUNDARY = 500;
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
@@ -39,14 +39,20 @@ public class Person extends Creature{
             velocity.scale(TRAVELLING_SPEED/velocity.length());
         } else if(state == States.IDLE) {
             //System.out.println("Velocity x: " + velocity.getX() + "Velocity y: " + velocity.getY() +"Random: "+ Math.random()/delta);
-            if( Math.abs(velocity.getX()) <= .01f && Math.abs(velocity.getY()) <= 0.01f && Math.random() / delta < .0006 ) {
-                float XComponent = (float)Math.random() * 2 *IDLE_SPEED - IDLE_SPEED;
+            if( Math.abs(velocity.getX()) <= .00001f && Math.abs(velocity.getY()) <= 0.00001f && Math.random() / delta < .1 ) {
+                float XComponent = (float)Math.random()  *IDLE_SPEED - 2 *IDLE_SPEED;
                 float YComponent = (float)Math.sqrt(IDLE_SPEED * IDLE_SPEED - XComponent * XComponent);
                 if(Math.random()<.5) {YComponent *= -1;}
-                idleMovementTime = (int)(Math.random() * 3000 + 2000);
-                System.out.println("new x:"+XComponent * idleMovementTime + "new y: "+YComponent * idleMovementTime + "Current: " +x +"Current y" + y);
-                if(Math.abs(XComponent * idleMovementTime + World.WIDTH/2) < CAMPFIRE_AREA_BOUNDARY + World.WIDTH && Math.abs(YComponent * idleMovementTime + World.HEIGHT/2) < CAMPFIRE_AREA_BOUNDARY + World.HEIGHT/2)
+                idleMovementTime = (int)(Math.random() * 2000 );
+                System.out.println(World.WIDTH);
+                float newX = XComponent * idleMovementTime + World.WIDTH/2;
+                float newY = YComponent * idleMovementTime + World.HEIGHT/2;
+                System.out.println("new x:"+(newX) + "new y: "+(newY) + "Current: " +x +"Current y" + y);
+
+               if(newX < CAMPFIRE_AREA_BOUNDARY + World.WIDTH /2 && newX > World.WIDTH/2 - CAMPFIRE_AREA_BOUNDARY && newY < CAMPFIRE_AREA_BOUNDARY + World.HEIGHT/2 && newY < -CAMPFIRE_AREA_BOUNDARY + World.HEIGHT/2) {
+
                     velocity = new Vector2f(XComponent, YComponent);
+                }
             } else {
                 idleMovementTime -= delta;
                 if(idleMovementTime <= 0) {
@@ -72,7 +78,6 @@ public class Person extends Creature{
             state = States.TRAVELING;
         } else {
             state = States.IDLE;
-            velocity = new Vector2f (0f, 0f);
         }
     }
 }
