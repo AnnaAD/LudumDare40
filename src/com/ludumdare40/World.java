@@ -54,6 +54,7 @@ public class World {
 		}		
 		m.setTarget(player);
 		entities.add(m);
+
 		
 		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
 			float x = (float)(Math.random()) * WIDTH;
@@ -112,6 +113,13 @@ public class World {
 		for(int i = entities.size() - 1; i>=0; i--) {
 			Entity e = entities.get(i);
 			e.update(gc, delta);
+			if(e instanceof Monster){
+				if(campMembers.size() == 0 || Math.abs(e.distanceTo(player)) < 1000) {
+					e.setTarget(player);
+				} else {
+					e.setTarget(campMembers.get(0));
+				}
+			}
 
 			if(player.getCollider().willCollideWith(e.getCollider(), 0, intendedDeltaY)) {
 				if (e instanceof Food){
@@ -198,6 +206,14 @@ public class World {
 
 	public void generateCreatures(){
 		Person.setCampfire(campfire);
+		Monster m = null;
+		try{
+			m = new Monster(WIDTH /2, HEIGHT /2, new Image("res/sampleimage.png"), 10);
+		} catch(SlickException exception) {
+			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
+		}
+		m.setTarget(player);
+		entities.add(m);
 		for(int i = 0; i < 1; i++) {
 			float x = (float) Math.random() * 100f + campfire.getWidth() + 10f ;
 			float y = (float) Math.random() * 100f + campfire.getHeight() + 10f;
