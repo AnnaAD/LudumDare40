@@ -29,7 +29,6 @@ public abstract class Entity {
 		this.x = x;
 		this.y = y;
 		this.s = s;
-		//TODO: Generalize this code.... For some reason it's always broken
 		this.width = s.getWidth()/s.getHorizontalCount();
 		this.height = s.getHeight()/s.getVerticalCount();
 		this.collider = new Collider(this, this.width, this.height);

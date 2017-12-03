@@ -8,7 +8,7 @@ public class ImageRes {
 	//So... This is a bad way to do this BUT otherwise it's really messy...
 	public static Image personImg; 
 	public static SpriteSheet personSpriteSheet;
-	public static String[] pathsToPeople = {"res/person.png","res/person1.png"};
+	public static String[] pathsToPeople = {"res/person.png","res/person1.png", "res/person2.png", "res/person3.png","res/person4.png", "res/person5.png", "res/person6.png", "res/person7.png","res/person8.png"};
 	public static Image[] peopleImg;
 	public static SpriteSheet[] peopleSpriteSheet;
 	public static Image campfireImg;
