@@ -20,6 +20,7 @@ public class Person extends Creature{
     public static StaticEntity campfire;
     private Button feedButton;
     private Text hungerText;
+    private Text healthText;
 
     private final float IDLE_SPEED = .5f;
     private final float TRAVELLING_SPEED = .001f;
@@ -30,7 +31,8 @@ public class Person extends Creature{
         state = States.IDLE;
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
-        hungerText = new Text(0,0,"Hunger: " + hunger);
+        hungerText = new Text(0,0,"Food: " + food);
+        healthText = new Text(0,0,"Health: " + (int) health);
     }
     
     public void update(GameContainer gc, int delta) {
@@ -76,10 +78,14 @@ public class Person extends Creature{
     public void render(Graphics g, float x, float y) {
     	super.render(g,x,y);
     	feedButton.setX(x);
-    	feedButton.setY(y - height/2 - 10);
+    	feedButton.setY(y - height/2 - 25);
     	feedButton.render(g);
     	hungerText.setX(x - width/2);
-    	hungerText.setY(y - height/2 + 5);
+    	hungerText.setY(y - height/2 - 5);
+    	healthText.setX(x - width/2);
+    	healthText.setY(y-height/2 + 10);
+    	healthText.setText("Health: " + (int) health);
+    	healthText.render(g);
     	if(state == States.STARVING) {
     	    hungerText.setText("STARVING!");
         }
