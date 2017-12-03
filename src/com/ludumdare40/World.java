@@ -137,7 +137,10 @@ public class World {
 			for(Person p: campMembers) {
 				boolean shoot = true;
 				if(p.checkToFeed(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
-					p.feed();
+					if(player.getFood() > 0) {
+						player.incrementFood(-1);
+						p.feed();
+					}
 					shoot = false;
 				}
 				if(shoot) {
