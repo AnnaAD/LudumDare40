@@ -46,16 +46,6 @@ public class World {
 	}
 
 	private void generateTerrain() {
-		Monster m = null;
-		try{
-			m = new Monster(WIDTH /2, HEIGHT /2, new Image("res/monster.png"), 10);
-		} catch(SlickException exception) {
-			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
-		}		
-		m.setTarget(player);
-		entities.add(m);
-
-		
 		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
@@ -208,7 +198,7 @@ public class World {
 		Person.setCampfire(campfire);
 		Monster m = null;
 		try{
-			m = new Monster(WIDTH /2, HEIGHT /2, new Image("res/sampleimage.png"), 10);
+			m = new Monster(WIDTH /2, HEIGHT /2, new Image("res/monster.png"), 10);
 		} catch(SlickException exception) {
 			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
 		}
