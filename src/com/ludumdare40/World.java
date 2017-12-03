@@ -114,10 +114,10 @@ public class World {
 			Entity e = entities.get(i);
 			e.update(gc, delta);
 			if(e instanceof Monster){
-				if(campMembers.size() == 0 || Math.abs(e.distanceTo(player)) < 1000) {
-					e.setTarget(player);
+				if(campMembers.size() == 0 || Math.abs(e.distanceTo(player)) < 500) {
+					((Monster)e).setTarget(player);
 				} else {
-					e.setTarget(campMembers.get(0));
+					((Monster)e).setTarget(campMembers.get(0));
 				}
 			}
 
