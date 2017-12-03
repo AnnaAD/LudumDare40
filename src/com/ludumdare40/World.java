@@ -18,6 +18,7 @@ public class World {
 	private StaticEntity campfire;
 	private ArrayList<Bullet> bullets;
 	private ArrayList<Person> campMembers;
+	private boolean endGame;
 
 	public ArrayList<Entity> getEntities() {
 		return entities;
@@ -32,6 +33,11 @@ public class World {
 		this.player = player;
 		generateTerrain();
 		generateCreatures();
+		endGame = false;
+	}
+
+	public boolean isEndGame() {
+		return endGame;
 	}
 
 	public void update(GameContainer gc, int delta) {
@@ -44,6 +50,9 @@ public class World {
 		}
 		if(Math.random() / delta < .0001) {
 			createPerson();
+		}
+		if(player.getHealth() <= 0 || campMembers.size() < 1) {
+			endGame = true;
 		}
 	}
 	

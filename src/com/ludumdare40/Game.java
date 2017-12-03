@@ -36,6 +36,10 @@ public class Game extends BasicGameState {
 		world.update(gc, delta);
 		camera.centerOnEntity(player);
 		
+		if(world.isEndGame()) {
+			endGame(gc,arg1);
+		}
+		
 		if(gc.getInput().isMousePressed(0)) {
 			if(button.checkClicked(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
 				System.out.println("click");
@@ -50,7 +54,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {
-		
+		sbg.enterState(1);
 	}
 
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
