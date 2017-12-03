@@ -210,7 +210,7 @@ public class World {
 			if(Math.random() < .5 ) { x *= -1 ;}
 			if(Math.random() < .5 ) { y *= -1 ;}
 			try {
-				Person campmember = new Person(x + WIDTH /2, y + HEIGHT /2, new Image("res/person.png"), (float)Math.random() *30f + 60f);
+				Person campmember = new Person(x + WIDTH /2, y + HEIGHT /2, new Image("res/playeridle.png"), (float)Math.random() *30f + 60f);
 				entities.add(campmember);
 				campMembers.add(campmember);
 				System.out.println("Camp member x: " + campmember.getX() +"Camp member y: " + campmember.getY());
