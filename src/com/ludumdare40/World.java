@@ -45,7 +45,7 @@ public class World {
 		handlePlayerMovementAndCollisions(gc, delta);
 		handleBullets(gc, delta);
 		removeDeadCreatures();
-		if(Math.random() * campMembers.size() / delta < .0001) {
+		if(Math.random() * campMembers.size() / delta < .0005) {
 			createMonster();
 		}
 		if(Math.random() / delta < .0001) {
@@ -209,6 +209,9 @@ public class World {
 				if (entities.get(i) instanceof Person) {
 					campMembers.remove(entities.get(i));
 				}
+				if (entities.get(i) instanceof Monster) {
+					Person.monsters.remove(entities.get(i));
+				}
 				entities.remove(i);
 			}
 		}
@@ -218,6 +221,8 @@ public class World {
 		for (int i = 0; i < 5; i++) {
 			createPerson();
 		}
+		for(int i = 0;i < 2; i++)
+			createMonster();
 	}
 
 	private void createMonster(){
@@ -229,6 +234,7 @@ public class World {
 		}
 		m.setTarget(player);
 		entities.add(m);
+		Person.monsters.add(m);
 	}
 
 	public void createPerson() {

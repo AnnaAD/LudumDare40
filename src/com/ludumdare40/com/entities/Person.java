@@ -10,6 +10,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
+import java.util.ArrayList;
+
 public class Person extends Creature{
     //TODO: Think of a better name
     public enum States {IDLE, FLEEING, TRAVELING, STARVING};
@@ -18,24 +20,28 @@ public class Person extends Creature{
     private long hunger;
     private int idleMovementTime;
     public static StaticEntity campfire;
+    public static ArrayList<Monster> monsters = new ArrayList<Monster>();
     private Button feedButton;
     private Text hungerText;
     private Text healthText;
 
     private final float IDLE_SPEED = .01f;
-    private final float TRAVELLING_SPEED = .1f;
-    private final float CAMPFIRE_AREA_BOUNDARY = 400;
+    private final float TRAVELLING_SPEED = .03f;
+    private float campfireAreaBoundary;
     private final float TIME_BETWEEN_FOOD = 50000f;
     private final float TIME_BEFORE_STARVING = 50000f;
+    private final float FLEEING_SPEED = .001f;
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
-        state = States.IDLE;
+
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
         hungerText = new Text(0,0,"Food: " + food);
         healthText = new Text(0,0,"Health: " + (int) health);
         food = 3;
+        campfireAreaBoundary = (float)Math.random() *100f + 200f;
+        setState();
     }
     
     public void update(GameContainer gc, int delta) {
@@ -111,14 +117,32 @@ public class Person extends Creature{
         Person.campfire = campfire;
     }
 
-    private void setState(){
-        if(hunger > TIME_BEFORE_STARVING) {
+    private void setState() {
+        Monster closestMonster = null;
+        if(monsters.size()!=0){
+            closestMonster = monsters.get(0);
+
+            for(int i = 0;i<monsters.size();i++) {
+                if (this.distanceTo(monsters.get(i)) < this.distanceTo(closestMonster))
+                    closestMonster = monsters.get(i);
+            }
+        }
+        if(distanceTo(closestMonster) < 200) {
+            velocity = closestMonster.getVelocity();
+            velocity.set(velocity.getX() * -1, velocity.getY() * -1);
+            velocity.scale(velocity.length() /  FLEEING_SPEED);
+            state = States.FLEEING;
+        } else if (hunger > TIME_BEFORE_STARVING) {
             state = States.STARVING;
-        } else if(this.distanceTo(campfire) > CAMPFIRE_AREA_BOUNDARY) {
+        }else if(this.distanceTo(campfire) > campfireAreaBoundary) {
             state = States.TRAVELING;
         } else {
             state = States.IDLE;
             velocity = new Vector2f(0f, 0f);
         }
+    }
+
+    public void setState(States state){
+
     }
 }

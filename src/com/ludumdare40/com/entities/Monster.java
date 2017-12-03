@@ -2,6 +2,7 @@ package com.ludumdare40.com.entities;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Monster extends Creature{
     //TODO: Add movement and attacking
@@ -60,7 +61,10 @@ public class Monster extends Creature{
     		}
     	}
     }
-    
+
+    public Vector2f getVelocity(){
+    	return new Vector2f(vx, vy);
+	}
 
 }
 
