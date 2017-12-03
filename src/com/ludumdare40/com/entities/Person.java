@@ -26,11 +26,11 @@ public class Person extends Creature{
     private Text healthText;
 
     private final float IDLE_SPEED = .01f;
-    private final float TRAVELLING_SPEED = .06f;
+    private final float TRAVELLING_SPEED = .03f;
     private float campfireAreaBoundary;
     private final float TIME_BETWEEN_FOOD = 50000f;
     private final float TIME_BEFORE_STARVING = 50000f;
-    private final float FLEEING_SPEED = .06f;
+    private final float FLEEING_SPEED = .04f;
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
