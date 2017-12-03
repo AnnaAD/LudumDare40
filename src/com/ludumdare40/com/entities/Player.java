@@ -28,8 +28,6 @@ public class Player extends Creature {
 			animUp = new Animation(new SpriteSheet(new Image("res/playerfront.png"), 35,64), 500);
 			animDown = new Animation(new SpriteSheet(new Image("res/playerback.png"), 35, 64), 500);
 
-
-
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

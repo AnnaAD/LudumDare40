@@ -56,11 +56,9 @@ public class World {
 
 			float y = (float) (Math.random()) * HEIGHT;
 
-			try {
-				entities.add(new Food(x, y, Food.Type.BERRY, new Image("res/berry.png")));
-			} catch (SlickException exception) {
-				System.out.println("ERROR: UNABLE TO LOAD BERRY IMAGE");
-			}
+
+			entities.add(new Food(x, y, Food.Type.BERRY, ImageRes.berryImg));
+			
 		}
 
 		if(player.getHealth() <= 0 || campMembers.size() < 1) {
@@ -76,37 +74,26 @@ public class World {
 		for(int i = 0; i < (int)(Math.random() * 40 + 100); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
-			try{
-				entities.add(new StaticEntity(x, y, StaticEntity.Type.TREE, new Image("res/tree.png")));
-			} catch(SlickException exception) {
-				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
-			}
+			entities.add(new StaticEntity(x, y, StaticEntity.Type.TREE, ImageRes.treeImg));
+			
 		}
 		for(int i = 0; i < (int)(Math.random() * 40 + 300); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
-			try{
-				entities.add(new Food(x, y, Food.Type.BERRY, new Image("res/berry.png")));
-			} catch(SlickException exception) {
-				System.out.println("ERROR: UNABLE TO LOAD BERRY IMAGE");
-			}
+			entities.add(new Food(x, y, Food.Type.BERRY, ImageRes.berryImg));
+			
 		}
 		
 		for(int i = 0; i < (int)(Math.random() * 40 + 100); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
-			try{
-				entities.add(new StaticEntity(x, y, StaticEntity.Type.ROCK, new Image("res/rock.png")));
-			} catch(SlickException exception) {
-				System.out.println("ERROR: UNABLE TO LOAD ROCK IMAGE");
-			}
+			entities.add(new StaticEntity(x, y, StaticEntity.Type.ROCK, ImageRes.rockImg));
+			
 		}
-		try {
-			this.campfire = new StaticEntity(WIDTH /2, HEIGHT /2, StaticEntity.Type.CAMPFIRE, new Image("res/campfire.png"));
-			entities.add(campfire);
-		} catch( Exception e) {
-			System.out.println("UNABLE TO LOAD CAMPFIRE IMAGE");
-		}
+
+		this.campfire = new StaticEntity(WIDTH /2, HEIGHT /2, StaticEntity.Type.CAMPFIRE,ImageRes.campfireImg);
+		entities.add(campfire);
+		
 	}
 
 	private void handlePlayerMovementAndCollisions(GameContainer gc, int delta) {
@@ -180,11 +167,8 @@ public class World {
 		float yComponent = gc.getInput().getMouseY() - gc.getHeight()/2;
 		Vector2f velocity = new Vector2f(xComponent, yComponent);
 
-		try{
-			bullets.add(new Bullet(player.getX() + player.getWidth()/2, player.getY() + player.getHeight()/2, new Image("res/bullet.png"),velocity));
-		}catch( Exception e){
-			System.out.println("COULDN'T LOAD BULLET IMAGE FROM FILE");
-		}
+		bullets.add(new Bullet(player.getX() + player.getWidth()/2, player.getY() + player.getHeight()/2, ImageRes.bulletImg,velocity));
+		
 	}
 	
 	private void handleBullets(GameContainer gc, int delta) {
@@ -239,11 +223,7 @@ public class World {
 
 	private void createMonster(){
 		Monster m = null;
-		try{
-			m = new Monster((float)Math.random()*WIDTH, (float)Math.random() * HEIGHT, new Image("res/monster.png"), 10);
-		} catch(SlickException exception) {
-			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
-		}
+		m = new Monster((float)Math.random()*WIDTH, (float)Math.random() * HEIGHT, ImageRes.monsterImg, 10);
 		m.setTarget(player);
 		entities.add(m);
 		Person.monsters.add(m);
@@ -261,7 +241,7 @@ public class World {
 				campMembers.add(campmember);
 				//System.out.println("Camp member x: " + campmember.getX() +"Camp member y: " + campmember.getY());
 			} catch(Exception exception) {
-				System.out.println("Could not load people image");
+				System.out.println("Could not load people image" + exception);
 			}
 
 	}

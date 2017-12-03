@@ -28,6 +28,7 @@ public class Game extends BasicGameState {
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		playerImg = new Image("res/playeridle.png");
+		ImageRes.init();
 		setupNewGame(gc, sbg);
 	}
 

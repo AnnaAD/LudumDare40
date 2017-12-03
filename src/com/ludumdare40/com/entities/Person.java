@@ -1,13 +1,17 @@
 package com.ludumdare40.com.entities;
 
+import com.ludumdare40.ImageRes;
 import com.ludumdare40.World;
 import com.ludumdare40.ui.Button;
 import com.ludumdare40.ui.Text;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import java.util.ArrayList;
@@ -24,6 +28,10 @@ public class Person extends Creature{
     private Button feedButton;
     private Text hungerText;
     private Text healthText;
+    private Animation animLeft;
+	private Animation animRight;
+	private Animation animUp;
+	private Animation animDown;
 
     private final float IDLE_SPEED = .05f;
     private final float TRAVELLING_SPEED = .05f;
@@ -34,6 +42,7 @@ public class Person extends Creature{
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
+
 
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
@@ -86,7 +95,9 @@ public class Person extends Creature{
     }
     
     public void render(Graphics g, float x, float y) {
-    	super.render(g,x,y);
+    	super.render(g, x, y);
+    	
+    	//Render UI Stuff
     	feedButton.setX(x);
     	feedButton.setY(y - height/2 - 25);
     	feedButton.render(g);
