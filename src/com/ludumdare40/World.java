@@ -51,6 +51,18 @@ public class World {
 		if(Math.random() / delta < .0001) {
 			createPerson();
 		}
+		if(Math.random()/delta < .0001) {
+			float x = (float) (Math.random()) * WIDTH;
+
+			float y = (float) (Math.random()) * HEIGHT;
+
+			try {
+				entities.add(new Food(x, y, Food.Type.BERRY, new Image("res/berry.png")));
+			} catch (SlickException exception) {
+				System.out.println("ERROR: UNABLE TO LOAD BERRY IMAGE");
+			}
+		}
+
 		if(player.getHealth() <= 0 || campMembers.size() < 1) {
 			endGame = true;
 		}
@@ -61,7 +73,7 @@ public class World {
 	}
 
 	private void generateTerrain() {
-		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
+		for(int i = 0; i < (int)(Math.random() * 40 + 100); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
 			try{
@@ -70,7 +82,7 @@ public class World {
 				System.out.println("ERROR: UNABLE TO LOAD TREE IMAGE");
 			}
 		}
-		for(int i = 0; i < (int)(Math.random() * 40 + 500); i++) {
+		for(int i = 0; i < (int)(Math.random() * 40 + 300); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
 			try{
@@ -80,7 +92,7 @@ public class World {
 			}
 		}
 		
-		for(int i = 0; i < (int)(Math.random() * 40 + 200); i++) {
+		for(int i = 0; i < (int)(Math.random() * 40 + 100); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
 			try{
