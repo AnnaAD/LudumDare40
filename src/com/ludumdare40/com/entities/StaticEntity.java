@@ -20,8 +20,8 @@ public class StaticEntity extends Entity {
                  collider.setHeight(img.getHeight() - (int) (img.getHeight()/1.5));
                 break;
             case CAMPFIRE:
-
-
+            	collider.setOffsetY((int) (img.getHeight()/1.5));
+                collider.setHeight(img.getHeight() - (int) (img.getHeight()/1.5));
                 break;
         }
     }
