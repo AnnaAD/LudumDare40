@@ -8,6 +8,9 @@ public class ImageRes {
 	//So... This is a bad way to do this BUT otherwise it's really messy...
 	public static Image personImg; 
 	public static SpriteSheet personSpriteSheet;
+	public static String[] pathsToPeople = {"res/person.png","res/person1.png"};
+	public static Image[] peopleImg;
+	public static SpriteSheet[] peopleSpriteSheet;
 	public static Image campfireImg;
 	public static Image berryImg;
 	public static Image treeImg;
@@ -18,6 +21,10 @@ public class ImageRes {
 	public static void init() throws SlickException {
 		personImg = new Image("res/person.png");
 		personSpriteSheet = new SpriteSheet(personImg,50 ,100);
+		peopleSpriteSheet = new SpriteSheet[pathsToPeople.length];
+		for(int i = 0; i < pathsToPeople.length; i++) {
+			peopleSpriteSheet[i] = new SpriteSheet(new Image(pathsToPeople[i]),50,100);
+		}
 		campfireImg = new Image("res/campfire.png");
 		berryImg = new Image("res/berry.png");
 		bulletImg = new Image("res/bullet.png");
@@ -27,7 +34,7 @@ public class ImageRes {
 	}
 	
 	public static SpriteSheet getRandomPerson() {
-		return personSpriteSheet;
-		
+		int i = (int)(Math.random() * (peopleSpriteSheet.length));
+		return peopleSpriteSheet[i];
 	}
 }

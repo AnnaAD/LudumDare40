@@ -1,6 +1,7 @@
 package com.ludumdare40;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.ludumdare40.com.entities.Entity;
 import com.ludumdare40.com.entities.Player;
@@ -22,6 +23,7 @@ public class Camera {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = new ArrayList<>(world.getEntities());
+		Collections.sort(eList, Entity.compareByY());
 		eList.addAll(world.getBullets());
 		Player p = world.getPlayer();
 		p.render(g, p.getX()-x,p.getY() - y);

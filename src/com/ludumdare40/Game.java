@@ -27,7 +27,6 @@ public class Game extends BasicGameState {
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		playerImg = new Image("res/playeridle.png");
 		ImageRes.init();
 		setupNewGame(gc, sbg);
 	}
@@ -59,7 +58,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
-		player = new Player(WORLDWIDTH / 2 - 100,WORLDHEIGHT/2,playerImg, 50);
+		player = new Player(WORLDWIDTH / 2 - 100,WORLDHEIGHT/2,ImageRes.personSpriteSheet, 50);
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera(world);
 		gc.getGraphics().setBackground(new Color(0x448E4B));

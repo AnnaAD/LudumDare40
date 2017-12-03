@@ -1,6 +1,7 @@
 package com.ludumdare40.com.entities;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 public abstract class Creature extends Entity {
@@ -9,6 +10,10 @@ public abstract class Creature extends Entity {
 	
 	public Creature(float x, float y, Image img, float health) {
 		super(x, y, img);
+		this.health = health;
+	}
+	public Creature(float x, float y, SpriteSheet pS, float health) {
+		super(x, y, pS);
 		this.health = health;
 	}
 

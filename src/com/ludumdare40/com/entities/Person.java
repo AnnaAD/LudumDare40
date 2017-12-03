@@ -40,12 +40,12 @@ public class Person extends Creature{
     private final float TIME_BEFORE_STARVING = 50000f;
     private final float FLEEING_SPEED = .05f;
 
-    public Person(float x, float y, Image img, float health) {
-        super(x, y, img, health);
-        animRight = new Animation(ImageRes.getRandomPerson(),0,1, 3,1,true, 200,false);
-		animUp = new Animation(ImageRes.getRandomPerson(),0,2,3,2,true, 200,false);
-		animLeft = new Animation(ImageRes.getRandomPerson(),0,3,3,3,true, 200,false);
-		animDown = new Animation(ImageRes.getRandomPerson(),0,0,3,0,true, 200,false);
+    public Person(float x, float y, SpriteSheet pS, float health) {
+        super(x, y, pS, health);
+        animRight = new Animation(pS,0,1, 3,1,true, 200,false);
+		animUp = new Animation(pS,0,2,3,2,true, 200,false);
+		animLeft = new Animation(pS,0,3,3,3,true, 200,false);
+		animDown = new Animation(pS,0,0,3,0,true, 200,false);
 
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
@@ -105,18 +105,24 @@ public class Person extends Creature{
     }
     
     public void render(Graphics g, float x, float y) {
-    	
-    	if(velocity.getY() < 0) {
-			g.drawAnimation(animUp, x, y);
-		} else if (velocity.getY() > 0) {
-			g.drawAnimation(animDown, x, y);
-		} else if(velocity.getX()> 0) {
-			g.drawAnimation(animRight, x, y);
-		} else if (velocity.getX() < 0) {
-			g.drawAnimation(animLeft, x, y);
-		} else {
-			g.drawAnimation(animLeft, x, y);
-		}
+    	if(Math.abs(velocity.getX()) > Math.abs(velocity.getY())) {
+	    	if(velocity.getX() < 0) {
+				g.drawAnimation(animLeft, x, y);
+			} else if (velocity.getX() > 0) {
+				g.drawAnimation(animRight, x, y);
+			}
+    	} else {
+    		
+    		if(velocity.getY() < 0) {
+				g.drawAnimation(animUp, x, y);
+			} else if (velocity.getY() > 0) {
+				g.drawAnimation(animDown, x, y);
+			} else {
+				animDown.setCurrentFrame(0);
+				g.drawAnimation(animDown, x, y);
+			}
+	    	
+    	}
     	
     	//Render UI Stuff
     	feedButton.setX(x);

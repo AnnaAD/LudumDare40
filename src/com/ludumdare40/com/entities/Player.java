@@ -21,8 +21,8 @@ public class Player extends Creature {
 	//The amount of food a player has
 	private int food;
 	
-	public Player(float x, float y, Image img, float health) {
-		super(x, y, img, health);
+	public Player(float x, float y, SpriteSheet pS, float health) {
+		super(x, y, pS, health);
 		/*try {
 			animRight = new Animation(new SpriteSheet(new Image("res/playerright.png"), 35,64), 500);
 			animLeft = new Animation(new SpriteSheet(new Image("res/playerleft.png"),35 ,64), 500);
@@ -34,10 +34,10 @@ public class Player extends Creature {
 			e.printStackTrace();
 		}*/
 		
-		animRight = new Animation(ImageRes.personSpriteSheet,0,1, 3,1,true, 200,false);
-		animUp = new Animation(ImageRes.personSpriteSheet,0,2,3,2,true, 200,false);
-		animLeft = new Animation(ImageRes.personSpriteSheet,0,3,3,3,true, 200,false);
-		animDown = new Animation(ImageRes.personSpriteSheet,0,0,3,0,true, 200,false);
+		animRight = new Animation(pS,0,1, 3,1,true, 200,false);
+		animUp = new Animation(pS,0,2,3,2,true, 200,false);
+		animLeft = new Animation(pS,0,3,3,3,true, 200,false);
+		animDown = new Animation(pS,0,0,3,0,true, 200,false);
 		
 		collider.setHeight(25);
 		collider.setOffsetY(animRight.getHeight()-25);
@@ -62,7 +62,8 @@ public class Player extends Creature {
 		} else if (moveX < 0) {
 			g.drawAnimation(animLeft, x, y);
 		} else {
-			g.drawAnimation(animLeft, x, y);
+			animDown.setCurrentFrame(0);
+			g.drawAnimation(animDown, x, y);
 		}
 	}
 
