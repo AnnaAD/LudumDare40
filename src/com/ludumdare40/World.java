@@ -39,6 +39,12 @@ public class World {
 		handlePlayerMovementAndCollisions(gc, delta);
 		handleBullets(gc, delta);
 		removeDeadCreatures();
+		if(Math.random() * campMembers.size() / delta < .0001) {
+			createMonster();
+		}
+		if(Math.random() / delta < .0001) {
+			createPerson();
+		}
 	}
 	
 	public Player getPlayer() {
@@ -173,6 +179,7 @@ public class World {
 						if (e instanceof StaticEntity)
 							bullets.remove(b);
 						else if (e instanceof Creature) {
+
 							((Creature) (e)).hurt(Bullet.DAMAGE);
 							bullets.remove(b);
 						}
@@ -189,34 +196,46 @@ public class World {
 
 	private void removeDeadCreatures(){
 		for(int i = entities.size() - 1; i>=0; i--) {
-			if(entities.get(i) instanceof Creature && ((Creature) entities.get(i)).isDead())
+			if(entities.get(i) instanceof Creature && ((Creature) entities.get(i)).isDead()) {
+				if (entities.get(i) instanceof Person) {
+					campMembers.remove(entities.get(i));
+				}
 				entities.remove(i);
+			}
 		}
 	}
 
-	public void generateCreatures(){
-		Person.setCampfire(campfire);
+	public void generateCreatures() {
+		for (int i = 0; i < 5; i++) {
+			createPerson();
+		}
+	}
+
+	private void createMonster(){
 		Monster m = null;
 		try{
-			m = new Monster(WIDTH /2, HEIGHT /2, new Image("res/monster.png"), 10);
+			m = new Monster((float)Math.random()*WIDTH, (float)Math.random() * HEIGHT, new Image("res/monster.png"), 10);
 		} catch(SlickException exception) {
 			System.out.println("ERROR: UNABLE TO LOAD Monster IMAGE");
 		}
 		m.setTarget(player);
 		entities.add(m);
-		for(int i = 0; i < 1; i++) {
-			float x = (float) Math.random() * 100f + campfire.getWidth() + 10f ;
+	}
+
+	public void createPerson() {
+		Person.setCampfire(campfire);
+			/*float x = (float) Math.random() * 100f + campfire.getWidth() + 10f ;
 			float y = (float) Math.random() * 100f + campfire.getHeight() + 10f;
 			if(Math.random() < .5 ) { x *= -1 ;}
-			if(Math.random() < .5 ) { y *= -1 ;}
+			if(Math.random() < .5 ) { y *= -1 ;}*/
 			try {
-				Person campmember = new Person(x + WIDTH /2, y + HEIGHT /2, new Image("res/playeridle.png"), (float)Math.random() *30f + 60f);
+				Person campmember = new Person((float)Math.random() * WIDTH, (float)Math.random() * HEIGHT, new Image("res/playeridle.png"), (float)Math.random() *30f + 60f);
 				entities.add(campmember);
 				campMembers.add(campmember);
-				System.out.println("Camp member x: " + campmember.getX() +"Camp member y: " + campmember.getY());
+				//System.out.println("Camp member x: " + campmember.getX() +"Camp member y: " + campmember.getY());
 			} catch(Exception exception) {
 				System.out.println("Could not load people image");
 			}
-		}
+
 	}
 }
