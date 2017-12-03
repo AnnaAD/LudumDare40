@@ -27,7 +27,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		playerImg = new Image("res/sampleimage.png");
+		playerImg = new Image("res/playeridle.png");
 		setupNewGame(gc, sbg);
 	}
 
@@ -47,7 +47,6 @@ public class Game extends BasicGameState {
 		camera.render(gc, g);
 		g.drawString("Food:" + player.getFood(), 10, 5);
 		g.drawString("Health:" + (int) player.getHealth(), 10, 20);
-		button.render( g);
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {
@@ -59,7 +58,6 @@ public class Game extends BasicGameState {
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		camera = new Camera(world);
 		gc.getGraphics().setBackground(new Color(0x448E4B));
-		button = new Button(10,50,50,20,"Hello");
 	}
 
 	@Override

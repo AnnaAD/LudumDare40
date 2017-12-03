@@ -14,7 +14,6 @@ public class Player extends Creature {
 	private float moveY;
 	private Animation animLeft;
 	private Animation animRight;
-
 	private Animation animUp;
 	private Animation animDown;
 
@@ -53,8 +52,10 @@ public class Player extends Creature {
 			g.drawAnimation(animUp, x, y);
 		} else if(moveX > 0) {
 			g.drawAnimation(animRight, x, y);
-		} else {
+		} else if (moveX < 0) {
 			g.drawAnimation(animLeft, x, y);
+		} else {
+			g.drawImage(img, x, y);
 		}
 	}
 
