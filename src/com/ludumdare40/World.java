@@ -168,9 +168,9 @@ public class World {
 					}
 					shoot = false;
 				}
-				if(shoot) {
-					shootBullet(gc);
-				}
+			}
+			if(shoot) {
+				shootBullet(gc);
 			}
 		}
 	}
