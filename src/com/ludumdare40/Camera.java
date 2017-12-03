@@ -3,6 +3,7 @@ package com.ludumdare40;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.ludumdare40.com.entities.Creature;
 import com.ludumdare40.com.entities.Entity;
 import com.ludumdare40.com.entities.Player;
 import org.newdawn.slick.GameContainer;
@@ -14,20 +15,23 @@ public class Camera {
 	private float width;
 	private float height;
 	private World world;
+	private CreatureManager creatureManager;
 	private Background bg;
 	
-	public Camera(World world) {
+	public Camera(World world, CreatureManager creaturemanager) {
 		this.world = world;
+		this.creatureManager = creaturemanager;
 		bg = new Background((int)world.WIDTH, (int)world.HEIGHT, ImageRes.snowImg);
 	}
 	
-	public void render(GameContainer gc, Graphics g) {
+	public void render(GameContainer gc, Graphics g, Player p) {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = new ArrayList<>(world.getEntities());
-		eList.add(world.getPlayer());
+		eList.add(p);
 		Collections.sort(eList, Entity.compareByY());
-		eList.addAll(world.getBullets());
+		eList.addAll(creatureManager.getBullets());
+		eList.addAll(creatureManager.getCreatures());
 
 		ArrayList<Tiles> bTiles = bg.getTiles();
 		for(Tiles t: bTiles) {

@@ -17,6 +17,7 @@ public class Game extends BasicGameState {
 	private static final int WORLDHEIGHT = 4000;
 	private Camera camera;
 	private World world;
+	private CreatureManager creatureManager;
 	private Player player;
 	private Image playerImg;
 	private Button button;
@@ -34,9 +35,10 @@ public class Game extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame arg1, int delta) throws SlickException {
 		player.update(gc, delta);
 		world.update(gc, delta);
+		creatureManager.update(gc, delta, world.getEntities());
 		camera.centerOnEntity(player);
 		
-		if(world.isEndGame()) {
+		if(creatureManager.isGameOver()) {
 			endGame(gc,arg1);
 		}
 		
@@ -48,7 +50,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		camera.render(gc, g);
+		camera.render(gc, g, player);
 		g.drawString("Food:" + player.getFood(), 10, 5);
 		g.drawString("Health:" + (int) player.getHealth(), 10, 20);
 	}
@@ -60,7 +62,9 @@ public class Game extends BasicGameState {
 	public void setupNewGame(GameContainer gc, StateBasedGame sbg) {
 		player = new Player(WORLDWIDTH / 2 - 100,WORLDHEIGHT/2,ImageRes.personSpriteSheet, 50);
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
-		camera = new Camera(world);
+		creatureManager = new CreatureManager(WORLDWIDTH, WORLDHEIGHT, player, world.campfire);
+		camera = new Camera(world, creatureManager);
+		System.out.println("After");
 		gc.getGraphics().setBackground(new Color(0xffffff));
 	}
 
