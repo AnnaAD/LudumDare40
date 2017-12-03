@@ -30,9 +30,8 @@ public abstract class Entity {
 		this.y = y;
 		this.s = s;
 		//TODO: Generalize this code.... For some reason it's always broken
-		System.out.println(s.getTextureHeight());
-		this.width = 50;
-		this.height = 100;
+		this.width = s.getWidth()/s.getHorizontalCount();
+		this.height = s.getHeight()/s.getVerticalCount();
 		this.collider = new Collider(this, this.width, this.height);
 	}
 
