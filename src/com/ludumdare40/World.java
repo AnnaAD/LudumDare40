@@ -80,7 +80,12 @@ public class World {
 		for(int i = 0; i < (int)(Math.random() * 40 + 300); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
-			entities.add(new Food(x, y, Food.Type.BERRY, ImageRes.berryImg));
+			if(Math.random() > .3)
+				entities.add(new Food(x, y, Food.Type.BERRY, ImageRes.berryImg));
+			else {
+				entities.add(new Food(x, y, Food.Type.MUSHROOM, ImageRes.mushroomImg));
+
+			}
 			
 		}
 		
@@ -242,4 +247,12 @@ public class World {
 			
 
 	}
+
+	//TODO: Make this generic to reduce code
+	/*private <T extends Entity>void GenerateEntities  (int minAmount, int maxAmount, Image img){
+		int number = (int)(Math.random() * (maxAmount - minAmount) + minAmount);
+		for(int i = 0; i < number; i++) {
+			if
+		}
+	}*/
 }

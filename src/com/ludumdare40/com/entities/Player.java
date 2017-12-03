@@ -30,7 +30,7 @@ public class Player extends Creature {
 			animDown = new Animation(new SpriteSheet(new Image("res/playerback.png"), 35, 64), 500);
 
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}*/
 		

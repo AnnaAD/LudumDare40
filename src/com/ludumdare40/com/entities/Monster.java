@@ -5,8 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Monster extends Creature{
-    //TODO: Add movement and attacking
-    /** from 0 to maxHealth*/
+	/** from 0 to maxHealth*/
     int health;
 
     public final float STARTING_HEALTH = 50;

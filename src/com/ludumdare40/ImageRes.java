@@ -6,6 +6,7 @@ import org.newdawn.slick.SpriteSheet;
 
 public class ImageRes {
 	//So... This is a bad way to do this BUT otherwise it's really messy...
+	//TODO: Make this a better file format?
 	public static Image personImg; 
 	public static SpriteSheet personSpriteSheet;
 	public static String[] pathsToPeople = {"res/person.png","res/person1.png", "res/person2.png", "res/person3.png","res/person4.png", "res/person5.png", "res/person6.png", "res/person7.png","res/person8.png"};
@@ -19,6 +20,7 @@ public class ImageRes {
 	public static Image bulletImg;
 	public static Image textbubbleImg;
 	public static Image snowImg;
+	public static Image mushroomImg;
 	
 	public static void init() throws SlickException {
 		personImg = new Image("res/person.png");
@@ -35,6 +37,7 @@ public class ImageRes {
 		rockImg = new Image("res/rock.png");
 		textbubbleImg = new Image("res/textbubble.png");
 		snowImg = new Image("res/grass.png");
+		mushroomImg = new Image("res/mushroom.png");
 	}
 	
 	public static SpriteSheet getRandomPerson() {
