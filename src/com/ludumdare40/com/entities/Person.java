@@ -40,7 +40,7 @@ public class Person extends Creature{
             velocity = new Vector2f(campfire.getX() - this.getX(), campfire.getY()-this.getY());
             velocity.scale(TRAVELLING_SPEED/velocity.length());
         } else if(state == States.IDLE) {
-            //System.out.println("Velocity x: " + velocity.getX() + "Velocity y: " + velocity.getY() +"Random: "+ Math.random()/delta);
+          /*  //System.out.println("Velocity x: " + velocity.getX() + "Velocity y: " + velocity.getY() +"Random: "+ Math.random()/delta);
             if( Math.abs(velocity.getX()) <= .00001f && Math.abs(velocity.getY()) <= 0.00001f && Math.random() / delta < .1 ) {
                 float XComponent = (float)Math.random()  *IDLE_SPEED - 2 *IDLE_SPEED;
                 float YComponent = (float)Math.sqrt(IDLE_SPEED * IDLE_SPEED - XComponent * XComponent);
@@ -59,7 +59,7 @@ public class Person extends Creature{
                 idleMovementTime -= delta;
                 if(idleMovementTime <= 0) {
                     velocity = new Vector2f(0f, 0f);
-                }
+                } */
             }
         } else if(state == States.STARVING) {
             hurt(.5f * delta);
@@ -76,7 +76,7 @@ public class Person extends Creature{
     	feedButton.render(g);
     	hungerText.setX(x - width/2);
     	hungerText.setY(y - height/2 + 5);
-    	hungerText.setText("Hunger " + hunger);
+    	hungerText.setText("Food " + hunger);
     	hungerText.render(g);
     }
     
@@ -85,7 +85,7 @@ public class Person extends Creature{
     }
     
     public void feed() {
-    	hunger = 0;
+    	food += 1;
     }
 
     public static void setCampfire(StaticEntity campfire){
