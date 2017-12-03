@@ -28,6 +28,7 @@ public class Leader extends StateBasedGame {
 		// The first state added will be the one that is loaded first, when the
 		// application is launched
 		this.addState(new Game());
+		this.addState(new GameOver());
 
 	}
 
