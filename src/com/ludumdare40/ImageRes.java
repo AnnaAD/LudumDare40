@@ -17,6 +17,7 @@ public class ImageRes {
 	public static Image rockImg;
 	public static Image monsterImg;
 	public static Image bulletImg;
+	public static Image textbubbleImg;
 	
 	public static void init() throws SlickException {
 		personImg = new Image("res/person.png");
@@ -31,6 +32,7 @@ public class ImageRes {
 		monsterImg = new Image("res/monster.png");
 		treeImg = new Image("res/tree.png");
 		rockImg = new Image("res/rock.png");
+		textbubbleImg = new Image("res/textbubble.png");
 	}
 	
 	public static SpriteSheet getRandomPerson() {

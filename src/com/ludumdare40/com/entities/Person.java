@@ -32,6 +32,7 @@ public class Person extends Creature{
 	private Animation animRight;
 	private Animation animUp;
 	private Animation animDown;
+	private String thought;
 
     private final float IDLE_SPEED = .05f;
     private final float TRAVELLING_SPEED = .05f;
@@ -125,6 +126,7 @@ public class Person extends Creature{
     	}
     	
     	//Render UI Stuff
+    	
     	feedButton.setX(x);
     	feedButton.setY(y - height/2 - 25);
     	feedButton.render(g);
@@ -135,12 +137,15 @@ public class Person extends Creature{
     	healthText.setText("Health: " + (int) health);
     	healthText.render(g);
     	if(state == States.STARVING) {
-    	    hungerText.setText("STARVING!");
+    	    thought = "STARVING!";
         }
-        else {
-            hungerText.setText(food + " food");
-        }
+        hungerText.setText(food + " food");
     	hungerText.render(g);
+    	
+    	if(thought != null) {
+    		g.drawImage(ImageRes.textbubbleImg, x + 50, y);
+    		g.drawString(thought, x+50 + ImageRes.textbubbleImg.getWidth()/2 - g.getFont().getWidth(thought)/2, y + 2);
+    	}
     }
     
     public boolean checkToFeed(int x, int y) {
@@ -170,12 +175,15 @@ public class Person extends Creature{
             velocity.scale( FLEEING_SPEED/velocity.length());
             //System.out.println("velocity");
             state = States.FLEEING;
+            thought = "AAH!!!";
         } else if (hunger > TIME_BEFORE_STARVING) {
             state = States.STARVING;
         }else if(this.distanceTo(campfire) > campfireAreaBoundary) {
             state = States.TRAVELING;
+            thought = "Ooh.. Fire?";
         } else {
             state = States.IDLE;
+            thought = null;
             velocity = new Vector2f(0f, 0f);
         }
     }
