@@ -83,7 +83,6 @@ public class CreatureManager {
                             bullets.remove(b);
                 for(Creature s: monsters) {
                     if (b.getCollider().collidesWith(s.getCollider())){
-
                             s.hurt(Bullet.DAMAGE);
                             bullets.remove(b);
                     }

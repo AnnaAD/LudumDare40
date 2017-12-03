@@ -164,7 +164,6 @@ public class Person extends Creature{
         Monster closestMonster = null;
         if(monsters.size()!=0){
             closestMonster = monsters.get(0);
-
             for(int i = 0;i<monsters.size();i++) {
                 if (this.distanceTo(monsters.get(i)) < this.distanceTo(closestMonster))
                     closestMonster = monsters.get(i);
@@ -173,7 +172,6 @@ public class Person extends Creature{
         if(closestMonster != null && distanceTo(closestMonster) < 200) {
             velocity = new Vector2f(-closestMonster.getX() + x,  -closestMonster.getY() + y);
             velocity.scale( FLEEING_SPEED/velocity.length());
-            //System.out.println("velocity");
             state = States.FLEEING;
             thought = "AAH!!!";
         } else if (hunger > TIME_BEFORE_STARVING) {
