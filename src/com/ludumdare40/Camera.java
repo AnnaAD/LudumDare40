@@ -14,9 +14,11 @@ public class Camera {
 	private float width;
 	private float height;
 	private World world;
+	private Background bg;
 	
 	public Camera(World world) {
 		this.world = world;
+		bg = new Background((int)world.WIDTH, (int)world.HEIGHT, ImageRes.snowImg);
 	}
 	
 	public void render(GameContainer gc, Graphics g) {
@@ -26,13 +28,20 @@ public class Camera {
 		eList.add(world.getPlayer());
 		Collections.sort(eList, Entity.compareByY());
 		eList.addAll(world.getBullets());
-		
+
+		ArrayList<Tiles> bTiles = bg.getTiles();
+		for(Tiles t: bTiles) {
+			if (canSee(t)) {
+				t.render(g,(int)t.getX()-x,(int)t.getY() - y);
+			}
+		}
 		
 		for(Entity e : eList) {
 			if(canSee(e)) {
 				e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
+		
 		
 	}
 	
@@ -43,6 +52,10 @@ public class Camera {
 	}
 	
 	public boolean canSee(Entity e) {
+		return (e.getX() + e.getWidth() > x) && (e.getX() <  x+ width) && (e.getY() + e.getHeight() > y) && (e.getY() < y + height);
+	}
+	
+	public boolean canSee(Tiles e) {
 		return (e.getX() + e.getWidth() > x) && (e.getX() <  x+ width) && (e.getY() + e.getHeight() > y) && (e.getY() < y + height);
 	}
 }
