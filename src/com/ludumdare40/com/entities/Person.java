@@ -22,7 +22,7 @@ public class Person extends Creature{
 
     private final float IDLE_SPEED = .5f;
     private final float TRAVELLING_SPEED = .001f;
-    private final float CAMPFIRE_AREA_BOUNDARY = 500;
+    private final float CAMPFIRE_AREA_BOUNDARY = 400;
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
@@ -34,12 +34,15 @@ public class Person extends Creature{
     
     public void update(GameContainer gc, int delta) {
         hunger += delta;
+        if(hunger > 30000 && food > 0){
+            food --;
+        hunger =0; }
         setState();
 
-        if(state == States.TRAVELING) {
-            velocity = new Vector2f(campfire.getX() - this.getX(), campfire.getY()-this.getY());
-            velocity.scale(TRAVELLING_SPEED/velocity.length());
-        } else if(state == States.IDLE) {
+        if (state == States.TRAVELING) {
+            velocity = new Vector2f(campfire.getX() - this.getX(), campfire.getY() - this.getY());
+            velocity.scale(TRAVELLING_SPEED / velocity.length());
+        } else if (state == States.IDLE) {
           /*  //System.out.println("Velocity x: " + velocity.getX() + "Velocity y: " + velocity.getY() +"Random: "+ Math.random()/delta);
             if( Math.abs(velocity.getX()) <= .00001f && Math.abs(velocity.getY()) <= 0.00001f && Math.random() / delta < .1 ) {
                 float XComponent = (float)Math.random()  *IDLE_SPEED - 2 *IDLE_SPEED;
@@ -60,7 +63,7 @@ public class Person extends Creature{
                 if(idleMovementTime <= 0) {
                     velocity = new Vector2f(0f, 0f);
                 } */
-            }
+
         } else if(state == States.STARVING) {
             hurt(.5f * delta);
         }
@@ -76,7 +79,7 @@ public class Person extends Creature{
     	feedButton.render(g);
     	hungerText.setX(x - width/2);
     	hungerText.setY(y - height/2 + 5);
-    	hungerText.setText("Food " + hunger);
+    	hungerText.setText("Food " + food);
     	hungerText.render(g);
     }
     
