@@ -23,10 +23,10 @@ public class Camera {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		ArrayList<Entity> eList = new ArrayList<>(world.getEntities());
+		eList.add(world.getPlayer());
 		Collections.sort(eList, Entity.compareByY());
 		eList.addAll(world.getBullets());
-		Player p = world.getPlayer();
-		p.render(g, p.getX()-x,p.getY() - y);
+		
 		
 		for(Entity e : eList) {
 			if(canSee(e)) {
