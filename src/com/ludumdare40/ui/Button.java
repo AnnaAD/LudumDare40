@@ -23,11 +23,27 @@ public class Button {
 		return (x > this.x) && (x <  this.x+ width) && (y > this.y) && (y < this.y + height);
 	}
 	
-	public void render(GameContainer gc, Graphics g) {
+	public void render(Graphics g) {
 		g.setColor(new Color(0x606060));
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.black);
 		g.drawString(text, x , y);
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
 	}
 
 }

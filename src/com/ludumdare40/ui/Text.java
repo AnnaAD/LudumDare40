@@ -14,8 +14,23 @@ public class Text {
 		this.y = y;
 		this.text = text;
 	}
-	public void render(GameContainer gc, Graphics g) {
+	public void render(Graphics g) {
 		g.setColor(Color.black);
-		g.drawString(text, x + g.getFont().getWidth(text)/2, y+g.getFont().getHeight(text)/2);
+		g.drawString(text, x, y);
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	public float getX() {
+		return x;
+	}
+	public void setX(float x) {
+		this.x = x;
+	}
+	public float getY() {
+		return y;
+	}
+	public void setY(float y) {
+		this.y = y;
 	}
 }

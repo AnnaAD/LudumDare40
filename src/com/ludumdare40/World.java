@@ -39,6 +39,18 @@ public class World {
 		handlePlayerMovementAndCollisions(gc, delta);
 		handleBullets(gc, delta);
 		removeDeadCreatures();
+		if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+			boolean shoot = true;
+			for(Person p: campMembers) {
+				if(p.checkToFeed(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
+					p.feed();
+					shoot = false;
+				}
+			}
+			if(shoot) {
+				shootBullet(gc);
+			}
+		}
 	}
 	
 	public Player getPlayer() {
@@ -135,17 +147,6 @@ public class World {
 	}
 
 	private void handleBullets(GameContainer gc, int delta) {
-		if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			float xComponent = gc.getInput().getMouseX() - gc.getWidth()/2;
-			float yComponent = gc.getInput().getMouseY() - gc.getHeight()/2;
-			Vector2f velocity = new Vector2f(xComponent, yComponent);
-
-			try{
-				bullets.add(new Bullet(player.getX() + player.getWidth()/2, player.getY() + player.getHeight()/2, new Image("res/bullet.png"),velocity));
-			}catch( Exception e){
-				System.out.println("COULDN'T LOAD BULLET IMAGE FROM FILE");
-			}
-		}
 
 		for(int i = bullets.size() - 1; i>=0; i--){
 			Bullet b = bullets.get(i);
@@ -166,6 +167,18 @@ public class World {
 				}
 
 			}
+		}
+	}
+
+	public void shootBullet(GameContainer gc) {
+		float xComponent = gc.getInput().getMouseX() - gc.getWidth()/2;
+		float yComponent = gc.getInput().getMouseY() - gc.getHeight()/2;
+		Vector2f velocity = new Vector2f(xComponent, yComponent);
+
+		try{
+			bullets.add(new Bullet(player.getX() + player.getWidth()/2, player.getY() + player.getHeight()/2, new Image("res/bullet.png"),velocity));
+		}catch( Exception e){
+			System.out.println("COULDN'T LOAD BULLET IMAGE FROM FILE");
 		}
 	}
 

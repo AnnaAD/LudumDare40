@@ -47,7 +47,7 @@ public class Game extends BasicGameState {
 		camera.render(gc, g);
 		g.drawString("Food:" + player.getFood(), 10, 5);
 		g.drawString("Health:" + (int) player.getHealth(), 10, 20);
-		button.render(gc, g);
+		button.render( g);
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {

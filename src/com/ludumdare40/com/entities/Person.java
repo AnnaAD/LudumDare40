@@ -1,9 +1,14 @@
 package com.ludumdare40.com.entities;
 
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
+
+import com.ludumdare40.ui.Button;
+import com.ludumdare40.ui.Text;
+
 
 public class Person extends Creature{
     //TODO: Think of a better name
@@ -17,11 +22,15 @@ public class Person extends Creature{
     private final float IDLE_SPEED = .2f;
     private final float TRAVELLING_SPEED = .1f;
     private final float CAMPFIRE_AREA_BOUNDARY = 400;
+    private Button feedButton;
+    private Text hungerText;
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
         state = States.IDLE;
         velocity = new Vector2f(0f,0f);
+        feedButton = new Button(0,0,50,20,"Feed");
+        hungerText = new Text(0,0,"Hunger" + hunger);
     }
     
     public void update(GameContainer gc, int delta) {
@@ -54,9 +63,33 @@ public class Person extends Creature{
         } else if(state == States.STARVING) {
             hurt(.5f * delta);
         }
-
+        
+      
+        hungerText.setText("Hunger: " + hunger);
         x += velocity.getX() * delta;
         y += velocity.getY() * delta;
+        
+    }
+    
+    public boolean checkToFeed(int x, int y) {
+    	if(feedButton.checkClicked(x, y)) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public void feed() {
+    	hunger = 0;
+    }
+    
+    public void render(Graphics g, float x, float y) {
+    		super.render(g, x, y);
+          	feedButton.setX(x);
+          	feedButton.setY(y - height/2 - 20);
+          	hungerText.setX(x);
+          	hungerText.setY(y - height/2 - 10);
+          	feedButton.render(g);
+          	hungerText.render(g);
     }
 
     public static void setCampfire(StaticEntity campfire){
