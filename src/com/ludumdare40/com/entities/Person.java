@@ -1,6 +1,9 @@
 package com.ludumdare40.com.entities;
 
 import com.ludumdare40.World;
+import com.ludumdare40.ui.Button;
+import com.ludumdare40.ui.Text;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -14,6 +17,8 @@ public class Person extends Creature{
     private long hunger;
     private int idleMovementTime;
     public static StaticEntity campfire;
+    private Button feedButton;
+    private Text hungerText;
 
     private final float IDLE_SPEED = .5f;
     private final float TRAVELLING_SPEED = .001f;
@@ -23,15 +28,12 @@ public class Person extends Creature{
         super(x, y, img, health);
         state = States.IDLE;
         velocity = new Vector2f(0f,0f);
-
+        feedButton = new Button(0,0,50,20,"Feed");
+        hungerText = new Text(0,0,"Hunger: " + hunger);
     }
     
     public void update(GameContainer gc, int delta) {
         hunger += delta;
-        if(hunger > 30000 && food > 0){
-            hunger = 0;
-            food--;
-        }
         setState();
 
         if(state == States.TRAVELING) {
@@ -65,6 +67,25 @@ public class Person extends Creature{
 
         x += velocity.getX() * delta;
         y += velocity.getY() * delta;
+    }
+    
+    public void render(Graphics g, float x, float y) {
+    	super.render(g,x,y);
+    	feedButton.setX(x);
+    	feedButton.setY(y - height/2 - 10);
+    	feedButton.render(g);
+    	hungerText.setX(x - width/2);
+    	hungerText.setY(y - height/2 + 5);
+    	hungerText.setText("Hunger " + hunger);
+    	hungerText.render(g);
+    }
+    
+    public boolean checkToFeed(int x, int y) {
+    	return feedButton.checkClicked(x, y);
+    }
+    
+    public void feed() {
+    	hunger = 0;
     }
 
     public static void setCampfire(StaticEntity campfire){
