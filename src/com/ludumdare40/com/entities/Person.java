@@ -4,6 +4,7 @@ import com.ludumdare40.World;
 import com.ludumdare40.ui.Button;
 import com.ludumdare40.ui.Text;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -34,7 +35,7 @@ public class Person extends Creature{
     
     public void update(GameContainer gc, int delta) {
         hunger += delta;
-        if(hunger > 30000 && food > 0){
+        if(hunger > 25000 && food > 0){
             food --;
         hunger =0; }
         setState();
@@ -65,7 +66,7 @@ public class Person extends Creature{
                 } */
 
         } else if(state == States.STARVING) {
-            hurt(.5f * delta);
+            hurt(.0005f * delta);
         }
 
         x += velocity.getX() * delta;
@@ -79,7 +80,12 @@ public class Person extends Creature{
     	feedButton.render(g);
     	hungerText.setX(x - width/2);
     	hungerText.setY(y - height/2 + 5);
-    	hungerText.setText("Food " + food);
+    	if(state == States.STARVING) {
+    	    hungerText.setText("STARVING!");
+        }
+        else {
+            hungerText.setText(food + " food");
+        }
     	hungerText.render(g);
     }
     
