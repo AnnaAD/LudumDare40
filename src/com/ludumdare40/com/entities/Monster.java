@@ -9,9 +9,9 @@ public class Monster extends Creature{
     /** from 0 to maxHealth*/
     int health;
 
-    public final float STARTING_HEALTH = 40;
+    public final float STARTING_HEALTH = 50;
     public final float SPEED = 0.08f;
-    public final float DAMAGE = 1;
+    public final float DAMAGE = 3;
     
     private float vx;
     private float vy;

@@ -26,11 +26,11 @@ public class Person extends Creature{
     private Text healthText;
 
     private final float IDLE_SPEED = .01f;
-    private final float TRAVELLING_SPEED = .03f;
+    private final float TRAVELLING_SPEED = .006f;
     private float campfireAreaBoundary;
     private final float TIME_BETWEEN_FOOD = 50000f;
     private final float TIME_BEFORE_STARVING = 50000f;
-    private final float FLEEING_SPEED = .04f;
+    private final float FLEEING_SPEED = .006f;
 
     public Person(float x, float y, Image img, float health) {
         super(x, y, img, health);
@@ -127,9 +127,8 @@ public class Person extends Creature{
                     closestMonster = monsters.get(i);
             }
         }
-        if(distanceTo(closestMonster) < 200) {
-            velocity = closestMonster.getVelocity();
-            velocity.set(velocity.getX() * -1, velocity.getY() * -1);
+        if(closestMonster != null && distanceTo(closestMonster) < 200) {
+            velocity = new Vector2f(-closestMonster.getX() + x,  -closestMonster.getY() + y);
             velocity.scale(velocity.length() /  FLEEING_SPEED);
             state = States.FLEEING;
         } else if (hunger > TIME_BEFORE_STARVING) {
