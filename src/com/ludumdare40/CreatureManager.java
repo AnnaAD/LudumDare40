@@ -92,6 +92,14 @@ public class CreatureManager {
                  player.heal(2);
              }
         }
+        
+        System.out.println(gc.getInput().getMouseX());
+        
+        if(gc.getInput().getMouseX() > mainCamera.getWidth()/2) {
+        	player.setDirGun("right");
+        } else {
+        	player.setDirGun("left");
+        }
     }
 
     private void shootBullet(GameContainer gc) {

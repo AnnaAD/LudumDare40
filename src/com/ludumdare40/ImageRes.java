@@ -22,7 +22,10 @@ public class ImageRes {
 	public static Image grassImg;
 	public static Image mushroomImg;
 	public static Image meatImg;
-	public static Image rifleImg;
+	public static Image rifleImg;	
+	public static Image leftrifleImg;
+
+	
 	
 	public static void init() throws SlickException {
 		personImg = new Image("res/person.png");
@@ -42,6 +45,7 @@ public class ImageRes {
 		mushroomImg = new Image("res/mushroom.png");
 		meatImg = new Image("res/meat.png");
 		rifleImg = new Image("res/rifle.png");
+		leftrifleImg = new Image("res/rifleleft.png");
 
 	}
 	
