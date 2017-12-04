@@ -1,42 +1,51 @@
 package com.ludumdare40.ui;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
-public class Button {
+public class Panel {
 	private float width;
 	private float height;
 	private float x;
 	private float y;
 	private String text;
+	private ArrayList<Button> buttons;
+	private ArrayList<Text> texts;
 	
-	public Button(float x, float y, float width, float height, String text) {
+	
+	public Panel(float x, float y, float width, float height, ArrayList<Button> buttons, ArrayList<Text> texts) {
 		this.width = width;
 		this.height = height;
 		this.x = x;
 		this.y = y;
-		this.text = text;
-	}
-	
-	public boolean checkClicked(int x, int y) {
-		return (x > this.x) && (x <  this.x+ width) && (y > this.y) && (y < this.y + height);
+		this.buttons = buttons;
+		this.texts = texts;
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(new Color(0x606060));
+		g.setColor(new Color(0x202020));
 		g.fillRect(x, y, width, height);
-		g.setColor(Color.black);
-		g.drawString(text, x , y);
+		for(Text t:texts) {
+			t.render(g);
+		}
+		
+		for(Button b : buttons) {
+			b.render(g);
+		}
 	}
 	
 	public void render(Graphics g, float x, float y) {
-		setX(x);
-		setY(y);
-		g.setColor(new Color(0x606060));
+		g.setColor(new Color(0x202020));
 		g.fillRect(x, y, width, height);
-		g.setColor(Color.black);
-		g.drawString(text, this.x , this.y);
+		for(Text t:texts) {
+			t.render(g);
+		}
+		
+		for(Button b : buttons) {
+			b.render(g);
+		}
 	}
 
 	public float getX() {
@@ -54,5 +63,8 @@ public class Button {
 	public void setY(float y) {
 		this.y = y;
 	}
-
+	
+	public ArrayList<Button> getButtons() {
+		return buttons;
+	}
 }

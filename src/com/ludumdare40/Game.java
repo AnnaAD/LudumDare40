@@ -67,6 +67,7 @@ public class Game extends BasicGameState {
 		world = new World(WORLDWIDTH, WORLDHEIGHT, player);
 		creatureManager = new CreatureManager(WORLDWIDTH, WORLDHEIGHT, player, world.campfire);
 		camera = new Camera(world, creatureManager);
+		creatureManager.setCamera(camera);
 		System.out.println("After");
 		gc.getGraphics().setBackground(new Color(0xffffff));
 	}

@@ -33,7 +33,8 @@ public class Person extends Creature{
 	private Animation animUp;
 	private Animation animDown;
 	private String thought;
-    private Text name;
+    private String name;
+    private boolean selected;
 
     private final float IDLE_SPEED = .05f;
     private final float TRAVELLING_SPEED = .05f;
@@ -48,7 +49,7 @@ public class Person extends Creature{
 		animUp = new Animation(pS,0,2,3,2,true, 200,false);
 		animLeft = new Animation(pS,0,3,3,3,true, 200,false);
 		animDown = new Animation(pS,0,0,3,0,true, 200,false);
-        this.name = new Text(0,0, name);
+        this.name = name;
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
         hungerText = new Text(0,0,"Food: " + food);
@@ -87,6 +88,8 @@ public class Person extends Creature{
     }
     
     public void render(Graphics g, float x, float y) {
+    	
+    	
     	if(Math.abs(velocity.getX()) > Math.abs(velocity.getY())) {
 	    	if(velocity.getX() < 0) {
 				g.drawAnimation(animLeft, x, y);
@@ -107,27 +110,39 @@ public class Person extends Creature{
     	}
     	
     	//Render UI Stuff
-    	name.setX(x);
-    	name.setY(y-height/2-40);
-    	feedButton.setX(x);
-    	feedButton.setY(y - height/2 - 25);
-    	feedButton.render(g);
-    	hungerText.setX(x - width/2);
-    	hungerText.setY(y - height/2 - 5);
-    	healthText.setX(x - width/2);
-    	healthText.setY(y-height/2 + 10);
-    	healthText.setText("Health: " + (int) health);
-    	healthText.render(g);
-    	if(state == States.STARVING) {
-    	    thought = "STARVING!";
-        }
-        hungerText.setText(food + " food");
-    	hungerText.render(g);
-    	name.render(g);
+    	if(selected) {
+    		renderUI(g, x, y);
+    	}
+    	
+    	/*if(selected) {
+		g.setColor(Color.yellow);
+		g.drawRoundRect(x, y, width, height, 15);
+		}*/
+    	
     	if(thought != null) {
     		g.drawImage(ImageRes.textbubbleImg, x + 50, y);
+    		g.setColor(Color.black);
     		g.drawString(thought, x+50 + ImageRes.textbubbleImg.getWidth()/2 - g.getFont().getWidth(thought)/2, y + 2);
     	}
+    }
+    
+    public boolean checkClicked(float clickX, float clickY) {
+		return (clickX > this.x) && (clickX <  this.x+ width) && (clickY > this.y) && (clickY < this.y + height);
+	}
+    
+    public void setSelect(boolean selected) {
+    	this.selected = selected;
+    }
+    
+    private void renderUI(Graphics g, float x, float y) {
+    	float panelWidth = 50;
+    	float panelHeight = 100;
+    	feedButton.render(g,x,y-height/2-25);
+    	healthText.setText("Health: " + (int) health);
+    	healthText.render(g, x-width/2,y-height/2+10);
+        hungerText.setText(food + " food");
+    	hungerText.render(g,x-width/2,y-height/2-5);
+    	g.drawString(name, x, y-height/2-40);
     }
     
     public boolean checkToFeed(int x, int y) {
@@ -157,6 +172,7 @@ public class Person extends Creature{
             state = States.FLEEING;
             thought = "AAH!!!";
         } else if (hunger > TIME_BEFORE_STARVING) {
+        	thought = "Starving!";
             state = States.STARVING;
         }else if(this.distanceTo(campfire) > campfireAreaBoundary) {
             state = States.TRAVELING;

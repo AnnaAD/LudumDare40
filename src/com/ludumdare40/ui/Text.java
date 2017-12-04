@@ -18,6 +18,14 @@ public class Text {
 		g.setColor(Color.black);
 		g.drawString(text, x, y);
 	}
+	
+	public void render(Graphics g, float x, float y) {
+		setX(x);
+		setY(y);
+		g.setColor(Color.black);
+		g.drawString(text,this.x,this.y);
+	}
+	
 	public void setText(String text) {
 		this.text = text;
 	}

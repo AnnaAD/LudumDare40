@@ -29,9 +29,10 @@ public class Camera {
 		height = gc.getHeight();
 		ArrayList<Entity> eList = new ArrayList<>(world.getEntities());
 		eList.add(p);
+		eList.addAll(creatureManager.getCreatures());
 		Collections.sort(eList, Entity.compareByY());
 		eList.addAll(creatureManager.getBullets());
-		eList.addAll(creatureManager.getCreatures());
+
 
 		ArrayList<Tiles> bTiles = bg.getTiles();
 		for(Tiles t: bTiles) {
@@ -45,6 +46,10 @@ public class Camera {
 				e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
+		
+		/*if(creatureManager.getSelectedPerson() != null) {
+			//render in camera?
+		}*/
 		
 		
 	}
@@ -71,4 +76,13 @@ public class Camera {
 	public boolean canSee(Tiles e) {
 		return (e.getX() + e.getWidth() > x) && (e.getX() <  x+ width) && (e.getY() + e.getHeight() > y) && (e.getY() < y + height);
 	}
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+	
 }

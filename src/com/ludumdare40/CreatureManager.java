@@ -15,6 +15,8 @@ public class CreatureManager {
     private ArrayList<Person> campMembers;
     private ArrayList<Monster> monsters;
     private NameGenerator nameGenerator;
+    private Person selectedPerson;
+    private Camera mainCamera; //sorry...
 
     public ArrayList<Creature> getCreatures() {
         ArrayList<Creature> creatures = new ArrayList<Creature>(monsters);
@@ -36,7 +38,6 @@ public class CreatureManager {
         this.player = player;
         Person.setCampfire(campfire);
         generateCreatures();
-
     }
 
     public void update(GameContainer gc, int delta, ArrayList<Entity> entities) {
@@ -51,18 +52,32 @@ public class CreatureManager {
         }
 
         if (gc.getInput().isMousePressed(0)) {
+        	selectedPerson = null;
             boolean shoot = true;
             for (Person p : campMembers) {
+            	p.setSelect(false);
                 if (p.checkToFeed(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
                     if (player.getFood() > 0) {
                         player.incrementFood(-1);
                         p.feed();
                     }
+                    p.setSelect(true);
                     shoot = false;
                 }
             }
             if (shoot) {
                 shootBullet(gc);
+            }
+        }
+        
+        if (gc.getInput().isMousePressed(1)) {
+            for (Person p : campMembers) {
+                if(p.checkClicked(gc.getInput().getMouseX() + mainCamera.getX(),gc.getInput().getMouseY() + mainCamera.getY())) {
+                	p.setSelect(true);
+                	selectedPerson = p;
+                } else {
+                	p.setSelect(false);
+                }
             }
         }
     }
@@ -100,7 +115,10 @@ public class CreatureManager {
             }
         }
     }
-
+    
+    public void setCamera(Camera camera) {
+    	mainCamera = camera;
+    }
     public void createPerson() {
         Person campmember = new Person((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.getRandomPerson(), (float) Math.random() * 30f + 60f, nameGenerator.next());
         campMembers.add(campmember);
@@ -155,4 +173,10 @@ public class CreatureManager {
             p.update(gc,delta);
         }
     }
+
+	public Person getSelectedPerson() {
+		return selectedPerson;
+	}
+    
+    
 }
