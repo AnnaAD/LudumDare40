@@ -36,7 +36,7 @@ public class Leader extends StateBasedGame {
 	public static void main(String[] args) {
 		try {
 			AppGameContainer app = new AppGameContainer(new Leader("Leader"));
-			app.setDisplayMode(WIDTH, HEIGHT, false);
+			app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
 			app.setTargetFrameRate(FPS);
 			app.setShowFPS(false);
 			app.start();
