@@ -17,6 +17,8 @@ public class CreatureManager {
     private NameGenerator nameGenerator;
     private Person selectedPerson;
     private Camera mainCamera; //sorry...
+	public final int MIN_PEOPLE = 30;
+	public final int DELTA_PEOPLE = 10;
 
     public ArrayList<Creature> getCreatures() {
         ArrayList<Creature> creatures = new ArrayList<Creature>(monsters);
@@ -44,10 +46,13 @@ public class CreatureManager {
         handleBullets(gc, delta, entities);
         removeDeadCreatures(entities);
         updateCreatures(gc,delta);
-        if (Math.random() * campMembers.size() / delta < .0005) {
+        if (Math.random() / (campMembers.size()/10) / delta < .0005) {
+        	System.out.println(campMembers.size() + " added monster");
             createMonster();
         }
-        if (Math.random() / delta < .0001) {
+        
+        if (Math.random() / delta < .00008) {
+        	System.out.println("Added Person");
             createPerson();
         }
 
@@ -158,7 +163,9 @@ public class CreatureManager {
             }
         for (int i = monsters.size() - 1; i >= 0; i--)
             if (monsters.get(i).isDead() ) {
-                entities.add(new Food(monsters.get(i).getX(),monsters.get(i).getY(),Food.Type.MEAT,ImageRes.meatImg));
+            	if(Math.random() < 0.33) {
+            		entities.add(new Food(monsters.get(i).getX(),monsters.get(i).getY(),Food.Type.MEAT,ImageRes.meatImg));
+            	}
                 Person.monsters.remove(monsters.get(i));
                 monsters.remove(i);
             }
