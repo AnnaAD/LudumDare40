@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.ludumdare40.com.entities.Creature;
 import com.ludumdare40.com.entities.Entity;
+import com.ludumdare40.com.entities.Person;
 import com.ludumdare40.com.entities.Player;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -44,7 +45,10 @@ public class Camera {
 		
 		for(Entity e : eList) {
 			if(canSee(e)) {
-				e.render(g,e.getX()-x,e.getY() - y);
+				if(e instanceof Person)
+					((Person)e).render(gc, g,e.getX()-x,e.getY() - y);
+				else
+					e.render(g,e.getX()-x,e.getY() - y);
 			}
 		}
 		

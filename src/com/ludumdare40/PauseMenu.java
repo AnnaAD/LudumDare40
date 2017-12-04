@@ -25,7 +25,6 @@ public class PauseMenu extends BasicGameState {
         g.drawString(text, gc.getWidth() / 2 - gc.getDefaultFont().getWidth(text) / 2, gc.getHeight() / 2 -gc.getDefaultFont().getHeight(text)/2);
     }
 
-
     @Override
     public void update(GameContainer gc, StateBasedGame stateBasedGame, int i) throws SlickException {
         delta += i;

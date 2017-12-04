@@ -1,7 +1,6 @@
 package com.ludumdare40.com.entities;
 
 import com.ludumdare40.ImageRes;
-import com.ludumdare40.World;
 import com.ludumdare40.ui.Button;
 import com.ludumdare40.ui.Text;
 
@@ -9,9 +8,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import java.util.ArrayList;
@@ -87,7 +85,7 @@ public class Person extends Creature{
         y += velocity.getY() * delta;
     }
     
-    public void render(Graphics g, float x, float y) {
+    public void render(GameContainer gc, Graphics g, float x, float y) {
     	
     	
     	if(Math.abs(velocity.getX()) > Math.abs(velocity.getY())) {
@@ -111,13 +109,10 @@ public class Person extends Creature{
     	
     	//Render UI Stuff
     	if(selected) {
-    		renderUI(g, x, y);
+    		renderUI(g, x, y, gc);
     	}
     	
-    	/*if(selected) {
-		g.setColor(Color.yellow);
-		g.drawRoundRect(x, y, width, height, 15);
-		}*/
+
     	
     	if(thought != null) {
     		g.drawImage(ImageRes.textbubbleImg, x + 50, y);
@@ -134,10 +129,14 @@ public class Person extends Creature{
     	this.selected = selected;
     }
     
-    private void renderUI(Graphics g, float x, float y) {
+    private void renderUI(Graphics g, float x, float y, GameContainer gc) {
     	float panelWidth = 50;
     	float panelHeight = 100;
-    	feedButton.render(g,x,y-height/2-25);
+        g.setColor(Color.yellow);/*
+        g.drawRoundRect(x, y, panelWidth, panelHeight, 15);*/
+        RoundedRectangle panel = new RoundedRectangle(x-40,y-105,90f,100f,5);
+        g.fill(panel);
+    	feedButton.render( gc,g,x,y-height/2-25);
     	healthText.setText("Health: " + (int) health);
     	healthText.render(g, x-width/2,y-height/2+10);
         hungerText.setText(food + " food");

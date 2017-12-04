@@ -3,6 +3,7 @@ package com.ludumdare40.ui;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 public class Panel {
@@ -24,7 +25,7 @@ public class Panel {
 		this.texts = texts;
 	}
 	
-	public void render(Graphics g) {
+	public void render(GameContainer gc, Graphics g) {
 		g.setColor(new Color(0x202020));
 		g.fillRect(x, y, width, height);
 		for(Text t:texts) {
@@ -32,11 +33,11 @@ public class Panel {
 		}
 		
 		for(Button b : buttons) {
-			b.render(g);
+			b.render(gc, g);
 		}
 	}
 	
-	public void render(Graphics g, float x, float y) {
+	public void render(GameContainer gc, Graphics g, float x, float y) {
 		g.setColor(new Color(0x202020));
 		g.fillRect(x, y, width, height);
 		for(Text t:texts) {
@@ -44,7 +45,7 @@ public class Panel {
 		}
 		
 		for(Button b : buttons) {
-			b.render(g);
+			b.render(gc, g);
 		}
 	}
 

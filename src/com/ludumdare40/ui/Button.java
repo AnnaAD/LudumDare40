@@ -23,20 +23,20 @@ public class Button {
 		return (x > this.x) && (x <  this.x+ width) && (y > this.y) && (y < this.y + height);
 	}
 	
-	public void render(Graphics g) {
+	public void render(GameContainer gc, Graphics g) {
 		g.setColor(new Color(0x606060));
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.black);
-		g.drawString(text, x , y);
+		g.drawString(text, x + (width- gc.getDefaultFont().getWidth(text))/2, y + (height- gc.getDefaultFont().getHeight(text))/2);
 	}
 	
-	public void render(Graphics g, float x, float y) {
+	public void render(GameContainer gc,Graphics g, float x, float y) {
 		setX(x);
 		setY(y);
 		g.setColor(new Color(0x606060));
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.black);
-		g.drawString(text, this.x , this.y);
+		g.drawString(text, x + (width- gc.getDefaultFont().getWidth(text))/2, y + (height- gc.getDefaultFont().getHeight(text))/2);
 	}
 
 	public float getX() {
@@ -51,8 +51,17 @@ public class Button {
 		return y;
 	}
 
+	public float getWidth() {
+		return width;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
 	public void setY(float y) {
 		this.y = y;
+
 	}
 
 }
