@@ -47,7 +47,7 @@ public class Game extends BasicGameState {
 				System.out.println("click");
 			}
 		}
-		if(gc.getInput().isKeyPressed(Input.KEY_P)){
+		if(gc.getInput().isKeyPressed(Input.KEY_P) || gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){
 			sbg.enterState(2);
 		}
 	}
