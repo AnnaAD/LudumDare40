@@ -52,7 +52,7 @@ public class CreatureManager {
         if(campFactor < 1) {
         	campFactor = 1;
         }
-        if (Math.random() / (campFactor) / delta < .0001) {
+        if (Math.random() / (campFactor) / delta < .00003) {
         	System.out.println(campMembers.size() + " added monster");
             createMonster();
         }
@@ -119,8 +119,10 @@ public class CreatureManager {
     }
 
     private void shootBullet(GameContainer gc) {
-        float xComponent = gc.getInput().getMouseX() - gc.getWidth() / 2;
-        float yComponent = gc.getInput().getMouseY() - gc.getHeight() / 2;
+        /*float xComponent = gc.getInput().getMouseX() - gc.getWidth() / 2;
+        float yComponent = gc.getInput().getMouseY() - (gc.getHeight() / 2);*/
+    	float xComponent = gc.getInput().getMouseX() - (player.getX() + player.getWidth() / 2) + mainCamera.getX();
+    	float yComponent = gc.getInput().getMouseY() - (player.getY() + player.getHeight() / 2 + 10) + mainCamera.getY();
         Vector2f velocity = new Vector2f(xComponent, yComponent);
         bullets.add(new Bullet(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2 + 10, ImageRes.bulletImg, velocity));
     }
@@ -175,7 +177,7 @@ public class CreatureManager {
         for (int i = 0; i < 5; i++) {
             createPerson();
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
             createMonster();
     }
 
