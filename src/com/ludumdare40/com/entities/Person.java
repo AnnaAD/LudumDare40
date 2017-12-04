@@ -35,7 +35,7 @@ public class Person extends Creature{
     private boolean selected;
 
     private final float IDLE_SPEED = .05f;
-    private final float TRAVELLING_SPEED = .05f;
+    private final float TRAVELLING_SPEED = .03f;
     private float campfireAreaBoundary;
     private final float TIME_BETWEEN_FOOD = 50000f;
     private final float TIME_BEFORE_STARVING = 50000f;

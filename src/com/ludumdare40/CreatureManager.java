@@ -51,7 +51,7 @@ public class CreatureManager {
             createMonster();
         }
         
-        if (Math.random() / delta < .00008) {
+        if (Math.random() / delta < .000075) {
         	System.out.println("Added Person");
             createPerson();
         }
@@ -109,7 +109,7 @@ public class CreatureManager {
                 bullets.remove(b);
             } else {
                 for (Entity s : staticentities)
-                    if (b.getCollider().collidesWith(s.getCollider()))
+                    if (b.getCollider().collidesWith(s.getCollider()) && !(s instanceof Food))
                             bullets.remove(b);
                 for(Creature s: monsters) {
                     if (b.getCollider().collidesWith(s.getCollider())){
@@ -141,7 +141,7 @@ public class CreatureManager {
     }
 
     private void createMonster() {
-        Monster m = new Monster((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.monsterImg, 10);
+        Monster m = new Monster((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.monsterImg, Monster.STARTING_HEALTH);
         monsters.add(m);
         m.setTarget(player);
         Person.monsters.add(m);
