@@ -5,6 +5,8 @@ WASD To Move, Click to Shoot, Right Click to get Info on People
 ## To do: 
 ### High Priority:
 
+- Make Decent looking Player UI
+
 - Figure out how to export it cleanly
 
 - Fiddle with constants to maximize actual fun
