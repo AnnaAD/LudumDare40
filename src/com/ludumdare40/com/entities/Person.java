@@ -33,8 +33,8 @@ public class Person extends Creature{
     private final float IDLE_SPEED = .05f;
     private final float TRAVELLING_SPEED = .05f;
     private float campfireAreaBoundary;
-    private final float TIME_BETWEEN_FOOD = 50000f;
-    private final float TIME_BEFORE_STARVING = 50000f;
+    private final float TIME_BETWEEN_FOOD = 20000f;
+    private final float TIME_BEFORE_STARVING = 250000f;
     private final float FLEEING_SPEED = .05f;
 
     public Person(float x, float y, SpriteSheet pS, float health, String name) {
@@ -49,7 +49,7 @@ public class Person extends Creature{
         hungerText = new Text(0,0,"Food: " + food);
         healthText = new Text(0,0,"Health: " + (int) health);
         food = 3;
-        campfireAreaBoundary = (float)Math.random() *100f + 200f;
+        campfireAreaBoundary = (float)Math.random() *325f + 75f;
         setState();
 
     }
@@ -68,6 +68,8 @@ public class Person extends Creature{
             hunger =0;
         }
         setState();
+        if(state == States.IDLE && hunger > TIME_BETWEEN_FOOD)
+            thought = "I'm feeling a little peckish.";
 
         if (state == States.TRAVELING) {
             velocity = new Vector2f(campfire.getX() - this.getX(), campfire.getY() - this.getY());
@@ -142,10 +144,7 @@ public class Person extends Creature{
         hungerText.setText( (food < 10 ? " " : "")+(int) food + " X");
         hungerText.render(g, panel.getCenterX() - (g.getFont().getWidth(hungerText.getText() + 8)) /2 -3,panel.getY() + 22);
         g.drawImage(ImageRes.foodImg.getScaledCopy(.5f), panel.getCenterX() + (g.getFont().getWidth(hungerText.getText())) /2 -4+3, panel.getY() + 22);
-    	/*hungerText.setText(food + " food");
-    	hungerText.render(g,x - 40 + 90/2 - g.getFont().getWidth(hungerText.getText())/2+4,y-height/2-5);*/
         feedButton.render( gc,g,panel.getCenterX() - feedButton.getWidth()/2,panel.getY() + 58);
-        //panel.getX() - 40 + (90- g.getFont().getWidth(healthText.getText()))/2
     }
     
     public boolean checkToFeed(int x, int y) {
@@ -175,7 +174,7 @@ public class Person extends Creature{
             state = States.FLEEING;
             thought = "AAH!!!";
         } else if (hunger > TIME_BEFORE_STARVING) {
-        	thought = "Starving!";
+        	thought = "I need food!";
             state = States.STARVING;
         }else if(this.distanceTo(campfire) > campfireAreaBoundary) {
             state = States.TRAVELING;
