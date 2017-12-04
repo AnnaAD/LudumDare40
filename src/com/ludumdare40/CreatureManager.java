@@ -16,9 +16,9 @@ public class CreatureManager {
     private ArrayList<Monster> monsters;
     private NameGenerator nameGenerator;
     private Person selectedPerson;
+    private StaticEntity campfire;
     private Camera mainCamera; //sorry...
-	public final int MIN_PEOPLE = 30;
-	public final int DELTA_PEOPLE = 10;
+	private String campfireDir = null;
 
     public ArrayList<Creature> getCreatures() {
         ArrayList<Creature> creatures = new ArrayList<Creature>(monsters);
@@ -38,6 +38,7 @@ public class CreatureManager {
         monsters = new ArrayList<Monster>();
         bullets = new ArrayList<>();
         this.player = player;
+        this.campfire = campfire;
         Person.setCampfire(campfire);
         generateCreatures();
     }
@@ -46,12 +47,17 @@ public class CreatureManager {
         handleBullets(gc, delta, entities);
         removeDeadCreatures(entities);
         updateCreatures(gc,delta);
-        if (Math.random() / (campMembers.size()/10) / delta < .0005) {
+        //System.out.println(campMembers.size());
+        int campFactor = campMembers.size()-3;
+        if(campFactor < 1) {
+        	campFactor = 1;
+        }
+        if (Math.random() / (campFactor) / delta < .0001) {
         	System.out.println(campMembers.size() + " added monster");
             createMonster();
         }
         
-        if (Math.random() / delta < .000075) {
+        if (Math.random() / delta < .000015) {
         	System.out.println("Added Person");
             createPerson();
         }
@@ -97,6 +103,18 @@ public class CreatureManager {
         	player.setDirGun("right");
         } else {
         	player.setDirGun("left");
+        }
+        
+        if(campfire.getX() - player.getX() > 500) {
+        	campfireDir = "East";
+        } else if (campfire.getX() - player.getX() < -500) {
+        	campfireDir = "West";
+        } else if (campfire.getY() - player.getY() > 500) {
+        	campfireDir = "South";
+        } else if (campfire.getY() - player.getY() <-500) {
+        	campfireDir = "North";
+        } else {
+        	campfireDir = null;
         }
     }
 
@@ -193,6 +211,11 @@ public class CreatureManager {
             p.update(gc,delta);
         }
     }
+
+    
+	public String getCampfireDir() {
+		return campfireDir;
+	}
 
 	public Person getSelectedPerson() {
 		return selectedPerson;

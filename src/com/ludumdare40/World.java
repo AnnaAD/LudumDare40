@@ -16,8 +16,8 @@ public class World {
 	public static float HEIGHT;
 	public StaticEntity campfire;
 	public Player player;
-	public final int MIN_FOOD = 30;
-	public final int DELTA_FOOD = 10;
+	public final int MIN_FOOD = 70;
+	public final int DELTA_FOOD = 30;
 
 	public ArrayList<Entity> getEntities() {
 		return entities;
@@ -51,7 +51,7 @@ public class World {
 	}*/
 
 	private void generateTerrain() {
-		for(int i = 0; i < (int)(Math.random() * 50 + 150); i++) {
+		for(int i = 0; i < (int)(Math.random() * 80 + 350); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
 			StaticEntity s= new StaticEntity(x, y, StaticEntity.Type.TREE, ImageRes.treeImg);
@@ -59,7 +59,7 @@ public class World {
 				entities.add(s);
 			}
 		}
-		for(int i = 0; i < (int)(Math.random() * 50 + 150); i++) {
+		for(int i = 0; i < (int)(Math.random() * DELTA_FOOD + MIN_FOOD); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
 			if(Math.random() > .3)
@@ -71,7 +71,7 @@ public class World {
 			
 		}
 		
-		for(int i = 0; i < (int)(Math.random() * DELTA_FOOD + MIN_FOOD); i++) {
+		for(int i = 0; i < (int)(Math.random() * 80 + 160); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
 			StaticEntity s= new StaticEntity(x, y, StaticEntity.Type.ROCK, ImageRes.rockImg);

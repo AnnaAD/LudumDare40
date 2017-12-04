@@ -1,9 +1,7 @@
 package com.ludumdare40;
 
 import com.ludumdare40.com.entities.Player;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -13,8 +11,8 @@ import org.newdawn.slick.*;
 
 public class Game extends BasicGameState {
 	public static final int ID = 0;
-	private static final int WORLDWIDTH = 6000;
-	private static final int WORLDHEIGHT = 6000;
+	private static final int WORLDWIDTH = 9000;
+	private static final int WORLDHEIGHT = 8000;
 	private Camera camera;
 	private World world;
 	private CreatureManager creatureManager;
@@ -62,8 +60,13 @@ public class Game extends BasicGameState {
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		camera.render(gc, gc.getGraphics(), player);
+		g.setColor(Color.white);
 		g.drawString("Food:" + player.getFood(), 10, 5);
 		g.drawString("Health:" + (int) player.getHealth(), 10, 20);
+		if(creatureManager.getCampfireDir() != null) {
+			g.drawString(creatureManager.getCampfireDir(), 10, 35);
+		}
+
 	}
 
 	public void endGame(GameContainer gc, StateBasedGame sbg) {
