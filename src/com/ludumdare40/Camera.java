@@ -21,7 +21,7 @@ public class Camera {
 	public Camera(World world, CreatureManager creaturemanager) {
 		this.world = world;
 		this.creatureManager = creaturemanager;
-		bg = new Background((int)world.WIDTH, (int)world.HEIGHT, ImageRes.snowImg);
+		bg = new Background((int)world.WIDTH, (int)world.HEIGHT, ImageRes.grassImg);
 	}
 	
 	public void render(GameContainer gc, Graphics g, Player p) {

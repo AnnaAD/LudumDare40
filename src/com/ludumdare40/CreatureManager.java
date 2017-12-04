@@ -41,7 +41,7 @@ public class CreatureManager {
 
     public void update(GameContainer gc, int delta, ArrayList<Entity> entities) {
         handleBullets(gc, delta, entities);
-        removeDeadCreatures();
+        removeDeadCreatures(entities);
         updateCreatures(gc,delta);
         if (Math.random() * campMembers.size() / delta < .0005) {
             createMonster();
@@ -90,6 +90,13 @@ public class CreatureManager {
                             bullets.remove(b);
                     }
                 }
+                
+                for(Creature s: campMembers) {
+                    if (b.getCollider().collidesWith(s.getCollider())){
+                            s.hurt(Bullet.DAMAGE);
+                            bullets.remove(b);
+                    }
+                }
             }
         }
     }
@@ -118,12 +125,15 @@ public class CreatureManager {
             createMonster();
     }
 
-    private void removeDeadCreatures() {
+    private void removeDeadCreatures(ArrayList<Entity> entities) {
         for (int i = campMembers.size() - 1; i >= 0; i--)
-            if (  campMembers.get(i).isDead())
-                    campMembers.remove(i);
+            if (campMembers.get(i).isDead()) {
+                entities.add(new Food(campMembers.get(i).getX(),campMembers.get(i).getY(),Food.Type.MEAT,ImageRes.meatImg));
+                campMembers.remove(i);
+            }
         for (int i = monsters.size() - 1; i >= 0; i--)
-            if (  monsters.get(i).isDead() ) {
+            if (monsters.get(i).isDead() ) {
+                entities.add(new Food(monsters.get(i).getX(),monsters.get(i).getY(),Food.Type.MEAT,ImageRes.meatImg));
                 Person.monsters.remove(monsters.get(i));
                 monsters.remove(i);
             }
