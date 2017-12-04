@@ -50,6 +50,14 @@ public class Game extends BasicGameState {
 		if(gc.getInput().isKeyPressed(Input.KEY_P) || gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){
 			sbg.enterState(2);
 		}
+		
+		 if (gc.getInput().isKeyPressed(Input.KEY_F2)) {
+	            try {
+	               gc.setFullscreen(!gc.isFullscreen());
+	            } catch (SlickException e) {
+	               System.out.println(e);
+	            }
+	      }
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
