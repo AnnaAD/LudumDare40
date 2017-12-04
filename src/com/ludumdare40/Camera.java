@@ -32,12 +32,13 @@ public class Camera {
 		eList.addAll(creatureManager.getCreatures());
 		Collections.sort(eList, Entity.compareByY());
 		eList.addAll(creatureManager.getBullets());
-
+		
+		gc.setVSync(true);
 
 		ArrayList<Tiles> bTiles = bg.getTiles();
 		for(Tiles t: bTiles) {
 			if (canSee(t)) {
-				t.render(g,(int)t.getX()-x,(int)t.getY() - y);
+				t.render(g,t.getX()-x,t.getY() - y);
 			}
 		}
 		

@@ -34,4 +34,9 @@ public class NameGenerator implements Iterable<String>, Iterator<String> {
     public String next() {
         return names.get((int)(Math.random() * names.size() ));
     }
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
 }
