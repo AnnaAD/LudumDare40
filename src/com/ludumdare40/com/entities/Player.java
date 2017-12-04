@@ -17,6 +17,7 @@ public class Player extends Creature {
 	private Animation animRight;
 	private Animation animUp;
 	private Animation animDown;
+	private String dirGun;
 
 	//The amount of food a player has
 	private int food;
@@ -52,18 +53,31 @@ public class Player extends Creature {
 		}
 	}
 	
+	public void renderGun(Graphics g, float x, float y) {
+		if(dirGun.equals("right")) {
+			g.drawImage(ImageRes.rifleImg,x + (width - ImageRes.leftrifleImg.getWidth())/2, y + 45);
+		} else {
+			g.drawImage(ImageRes.leftrifleImg, x + (width - ImageRes.leftrifleImg.getWidth())/2, y + 45);
+		}
+	}
+	
 	public void render(Graphics g, float x, float y) {
 		if(moveY < 0) {
+			renderGun(g, x,y);
 			g.drawAnimation(animUp, x, y);
 		} else if (moveY > 0) {
 			g.drawAnimation(animDown, x, y);
+			renderGun(g,x,y);
 		} else if(moveX > 0) {
 			g.drawAnimation(animRight, x, y);
+			renderGun(g,x,y);
 		} else if (moveX < 0) {
 			g.drawAnimation(animLeft, x, y);
+			renderGun(g,x,y);
 		} else {
 			animDown.setCurrentFrame(0);
 			g.drawAnimation(animDown, x, y);
+			renderGun(g,x,y);
 		}
 	}
 
@@ -83,6 +97,10 @@ public class Player extends Creature {
 	public void moveY(float y) {
 		moveY = y;
 		this.y += y;
+	}
+	
+	public void setDirGun(String s) {
+		dirGun = s;
 	}
 	
 	public int getFood() {

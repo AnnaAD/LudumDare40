@@ -16,9 +16,9 @@ public class CreatureManager {
     private ArrayList<Monster> monsters;
     private NameGenerator nameGenerator;
     private Person selectedPerson;
+    private StaticEntity campfire;
     private Camera mainCamera; //sorry...
-	public final int MIN_PEOPLE = 30;
-	public final int DELTA_PEOPLE = 10;
+	private String campfireDir = null;
 
     public ArrayList<Creature> getCreatures() {
         ArrayList<Creature> creatures = new ArrayList<Creature>(monsters);
@@ -38,6 +38,7 @@ public class CreatureManager {
         monsters = new ArrayList<Monster>();
         bullets = new ArrayList<>();
         this.player = player;
+        this.campfire = campfire;
         Person.setCampfire(campfire);
         generateCreatures();
     }
@@ -46,12 +47,17 @@ public class CreatureManager {
         handleBullets(gc, delta, entities);
         removeDeadCreatures(entities);
         updateCreatures(gc,delta);
-        if (Math.random() / (campMembers.size()/10) / delta < .0005) {
+        //System.out.println(campMembers.size());
+        int campFactor = campMembers.size()-3;
+        if(campFactor < 1) {
+        	campFactor = 1;
+        }
+        if (Math.random() / (campFactor) / delta < .00003) {
         	System.out.println(campMembers.size() + " added monster");
             createMonster();
         }
         
-        if (Math.random() / delta < .00008) {
+        if (Math.random() / delta < .000015) {
         	System.out.println("Added Person");
             createPerson();
         }
@@ -92,13 +98,33 @@ public class CreatureManager {
                  player.heal(2);
              }
         }
+                
+        if(gc.getInput().getMouseX() > mainCamera.getWidth()/2) {
+        	player.setDirGun("right");
+        } else {
+        	player.setDirGun("left");
+        }
+        
+        if(campfire.getX() - player.getX() > 500) {
+        	campfireDir = "East";
+        } else if (campfire.getX() - player.getX() < -500) {
+        	campfireDir = "West";
+        } else if (campfire.getY() - player.getY() > 500) {
+        	campfireDir = "South";
+        } else if (campfire.getY() - player.getY() <-500) {
+        	campfireDir = "North";
+        } else {
+        	campfireDir = null;
+        }
     }
 
     private void shootBullet(GameContainer gc) {
-        float xComponent = gc.getInput().getMouseX() - gc.getWidth() / 2;
-        float yComponent = gc.getInput().getMouseY() - gc.getHeight() / 2;
+        /*float xComponent = gc.getInput().getMouseX() - gc.getWidth() / 2;
+        float yComponent = gc.getInput().getMouseY() - (gc.getHeight() / 2);*/
+    	float xComponent = gc.getInput().getMouseX() - (player.getX() + player.getWidth() / 2) + mainCamera.getX();
+    	float yComponent = gc.getInput().getMouseY() - (player.getY() + player.getHeight() / 2 + 10) + mainCamera.getY();
         Vector2f velocity = new Vector2f(xComponent, yComponent);
-        bullets.add(new Bullet(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, ImageRes.bulletImg, velocity));
+        bullets.add(new Bullet(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2 + 10, ImageRes.bulletImg, velocity));
     }
 
     private void handleBullets(GameContainer gc, int delta, ArrayList<Entity> staticentities) {
@@ -109,7 +135,7 @@ public class CreatureManager {
                 bullets.remove(b);
             } else {
                 for (Entity s : staticentities)
-                    if (b.getCollider().collidesWith(s.getCollider()))
+                    if (b.getCollider().collidesWith(s.getCollider()) && !(s instanceof Food))
                             bullets.remove(b);
                 for(Creature s: monsters) {
                     if (b.getCollider().collidesWith(s.getCollider())){
@@ -141,7 +167,7 @@ public class CreatureManager {
     }
 
     private void createMonster() {
-        Monster m = new Monster((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.monsterImg, 10);
+        Monster m = new Monster((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.monsterImg, Monster.STARTING_HEALTH);
         monsters.add(m);
         m.setTarget(player);
         Person.monsters.add(m);
@@ -151,7 +177,7 @@ public class CreatureManager {
         for (int i = 0; i < 5; i++) {
             createPerson();
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
             createMonster();
     }
 
@@ -187,6 +213,11 @@ public class CreatureManager {
             p.update(gc,delta);
         }
     }
+
+    
+	public String getCampfireDir() {
+		return campfireDir;
+	}
 
 	public Person getSelectedPerson() {
 		return selectedPerson;

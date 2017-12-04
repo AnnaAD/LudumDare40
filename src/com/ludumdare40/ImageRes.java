@@ -25,7 +25,9 @@ public class ImageRes {
 	public static Image rifleImg;
 	public static Image healthImg;
 	public static Image foodImg;
-	
+	public static Image rifleImg;
+	public static Image leftrifleImg;
+
 	public static void init() throws SlickException {
 		personImg = new Image("res/person.png");
 		personSpriteSheet = new SpriteSheet(personImg,50 ,100);
@@ -46,6 +48,7 @@ public class ImageRes {
 		rifleImg = new Image("res/rifle.png");
 		healthImg = new Image("res/health.png");
 		foodImg = new Image("res/food.png");
+		leftrifleImg = new Image("res/rifleleft.png");
 	}
 	
 	public static SpriteSheet getRandomPerson() {
