@@ -32,20 +32,23 @@ public class Game extends BasicGameState {
 		setupNewGame(gc, sbg);
 	}
 
-	public void update(GameContainer gc, StateBasedGame arg1, int delta) throws SlickException {
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		player.update(gc, delta);
 		world.update(gc, delta);
 		creatureManager.update(gc, delta, world.getEntities());
 		camera.centerOnEntity(player);
 		
 		if(creatureManager.isGameOver()) {
-			endGame(gc,arg1);
+			endGame(gc,sbg);
 		}
 		
 		if(gc.getInput().isMousePressed(0)) {
 			if(button.checkClicked(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
 				System.out.println("click");
 			}
+		}
+		if(gc.getInput().isKeyPressed(Input.KEY_P)){
+			sbg.enterState(2);
 		}
 	}
 
@@ -75,6 +78,8 @@ public class Game extends BasicGameState {
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg){
-		setupNewGame(gc, sbg);
+		if(creatureManager == null || creatureManager.isGameOver()) {
+			setupNewGame(gc, sbg);
+		}
 	}
 }

@@ -25,8 +25,8 @@ public class World {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		entities = new ArrayList<Entity>();
-		generateTerrain();
 		this.player = player;
+		generateTerrain();
 	}
 
 	public void update(GameContainer gc, int delta) {
@@ -51,8 +51,10 @@ public class World {
 		for(int i = 0; i < (int)(Math.random() * 40 + 100); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
-			entities.add(new StaticEntity(x, y, StaticEntity.Type.TREE, ImageRes.treeImg));
-			
+			StaticEntity s= new StaticEntity(x, y, StaticEntity.Type.TREE, ImageRes.treeImg);
+			if(!s.getCollider().collidesWith(player.getCollider())){
+				entities.add(s);
+			}
 		}
 		for(int i = 0; i < (int)(Math.random() * 40 + 300); i++) {
 			float x = (float)(Math.random()) * WIDTH;
@@ -69,8 +71,10 @@ public class World {
 		for(int i = 0; i < (int)(Math.random() * 40 + 100); i++) {
 			float x = (float)(Math.random()) * WIDTH;
 			float y = (float)(Math.random()) * HEIGHT;
-			entities.add(new StaticEntity(x, y, StaticEntity.Type.ROCK, ImageRes.rockImg));
-			
+			StaticEntity s= new StaticEntity(x, y, StaticEntity.Type.ROCK, ImageRes.rockImg);
+			if(!s.getCollider().collidesWith(player.getCollider())){
+				entities.add(s);
+			}
 		}
 
 		this.campfire = new StaticEntity(WIDTH /2, HEIGHT /2, StaticEntity.Type.CAMPFIRE,ImageRes.campfireImg);

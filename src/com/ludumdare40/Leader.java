@@ -10,6 +10,7 @@ public class Leader extends StateBasedGame {
 	// Game state identifiers
 	public static final int GAME = 0;
 	public static final int GAMEOVER = 1;
+	public static final int PAUSE = 2;
 
 	// Application Properties
 	public static final int WIDTH = 1000;
@@ -29,7 +30,7 @@ public class Leader extends StateBasedGame {
 		// application is launched
 		this.addState(new Game());
 		this.addState(new GameOver());
-
+		this.addState(new PauseMenu());
 	}
 
 	// Main Method

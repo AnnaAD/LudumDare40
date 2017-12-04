@@ -22,8 +22,7 @@ public class GameOver extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		String text = "GAME OVER.";
 		text = "Press Enter to Play again, or Q to quit";
-		g.drawString(text, gc.getWidth() / 2 - gc.getDefaultFont().getWidth(text) / 2, gc.getHeight() / 2 + 16);
-
+		g.drawString(text, gc.getWidth() / 2 - gc.getDefaultFont().getWidth(text) / 2, gc.getHeight() / 2 - gc.getDefaultFont().getHeight(text));
 	}
 
 	@Override
