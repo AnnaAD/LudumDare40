@@ -50,9 +50,18 @@ public class Camera {
 	}
 	
 	public void centerOnEntity(Entity e) {
-		//TODO: add clamp
-		x = e.getX() - width/2;
-		y = e.getY() - height/2;
+		if(e.getX() - width / 2 < 0)
+			x = 0;
+		else if( e.getX() + width/2 >= world.WIDTH)
+			x = world.WIDTH-width;
+		else
+			x = e.getX() - width/2;
+		if(e.getY() - height / 2 < 0)
+			y = 0;
+		else if( e.getY() + height/2 >= world.HEIGHT)
+			y = world.HEIGHT-height;
+		else
+			y	 = e.getY() - height/2;
 	}
 	
 	public boolean canSee(Entity e) {

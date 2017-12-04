@@ -118,6 +118,11 @@ public class World {
 				}
 			}
 		}
+
+		if(player.getX() + intendedDeltaX < 0 || player.getCollider().getX() + player.getCollider().getWidth() + intendedDeltaX > World.WIDTH)
+			intendedDeltaX = 0;
+		if(player.getY() + intendedDeltaY < 0 || player.getCollider().getY() + player.getCollider().getHeight() + intendedDeltaY > World.HEIGHT)
+			intendedDeltaY = 0;
 		player.moveX(intendedDeltaX);
 		player.moveY(intendedDeltaY);
 		
