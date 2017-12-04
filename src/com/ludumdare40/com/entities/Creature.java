@@ -28,5 +28,9 @@ public abstract class Creature extends Entity {
 	public boolean isDead(){
 		return health <= 0;
 	}
+	
+	public void heal(int i) {
+		health+=i;
+	}
 
 }

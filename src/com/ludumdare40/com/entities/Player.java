@@ -92,4 +92,6 @@ public class Player extends Creature {
 	public void incrementFood(int amount) {
 		food += amount;
 	}
+
+	
 }

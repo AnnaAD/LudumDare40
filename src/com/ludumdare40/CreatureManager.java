@@ -80,6 +80,13 @@ public class CreatureManager {
                 }
             }
         }
+        
+        if(gc.getInput().isKeyPressed(gc.getInput().KEY_E)) {
+        	 if (player.getFood() > 0) {
+                 player.incrementFood(-1);
+                 player.heal(2);
+             }
+        }
     }
 
     private void shootBullet(GameContainer gc) {
