@@ -92,9 +92,7 @@ public class CreatureManager {
                  player.heal(2);
              }
         }
-        
-        System.out.println(gc.getInput().getMouseX());
-        
+                
         if(gc.getInput().getMouseX() > mainCamera.getWidth()/2) {
         	player.setDirGun("right");
         } else {
@@ -106,7 +104,7 @@ public class CreatureManager {
         float xComponent = gc.getInput().getMouseX() - gc.getWidth() / 2;
         float yComponent = gc.getInput().getMouseY() - gc.getHeight() / 2;
         Vector2f velocity = new Vector2f(xComponent, yComponent);
-        bullets.add(new Bullet(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, ImageRes.bulletImg, velocity));
+        bullets.add(new Bullet(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2 + 10, ImageRes.bulletImg, velocity));
     }
 
     private void handleBullets(GameContainer gc, int delta, ArrayList<Entity> staticentities) {

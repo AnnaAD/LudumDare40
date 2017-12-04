@@ -55,9 +55,9 @@ public class Player extends Creature {
 	
 	public void renderGun(Graphics g, float x, float y) {
 		if(dirGun.equals("right")) {
-			g.drawImage(ImageRes.rifleImg,x + (width - ImageRes.leftrifleImg.getWidth())/2, y + 35);
+			g.drawImage(ImageRes.rifleImg,x + (width - ImageRes.leftrifleImg.getWidth())/2, y + 45);
 		} else {
-			g.drawImage(ImageRes.leftrifleImg, x + (width - ImageRes.leftrifleImg.getWidth())/2, y + 35);
+			g.drawImage(ImageRes.leftrifleImg, x + (width - ImageRes.leftrifleImg.getWidth())/2, y + 45);
 		}
 	}
 	
