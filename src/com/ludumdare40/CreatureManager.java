@@ -14,6 +14,7 @@ public class CreatureManager {
     private ArrayList<Bullet> bullets;
     private ArrayList<Person> campMembers;
     private ArrayList<Monster> monsters;
+    private NameGenerator nameGenerator;
 
     public ArrayList<Creature> getCreatures() {
         ArrayList<Creature> creatures = new ArrayList<Creature>(monsters);
@@ -28,12 +29,14 @@ public class CreatureManager {
     public CreatureManager(float width, float height, Player player, StaticEntity campfire) {
         this.WIDTH = width;
         this.HEIGHT = height;
+        nameGenerator = new NameGenerator();
         campMembers = new ArrayList<Person>();
         monsters = new ArrayList<Monster>();
         bullets = new ArrayList<>();
         this.player = player;
         Person.setCampfire(campfire);
         generateCreatures();
+
     }
 
     public void update(GameContainer gc, int delta, ArrayList<Entity> entities) {
@@ -92,7 +95,7 @@ public class CreatureManager {
     }
 
     public void createPerson() {
-        Person campmember = new Person((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.getRandomPerson(), (float) Math.random() * 30f + 60f);
+        Person campmember = new Person((float) Math.random() * WIDTH, (float) Math.random() * HEIGHT, ImageRes.getRandomPerson(), (float) Math.random() * 30f + 60f, nameGenerator.next());
         campMembers.add(campmember);
     }
 

@@ -33,6 +33,7 @@ public class Person extends Creature{
 	private Animation animUp;
 	private Animation animDown;
 	private String thought;
+    private Text name;
 
     private final float IDLE_SPEED = .05f;
     private final float TRAVELLING_SPEED = .05f;
@@ -41,13 +42,13 @@ public class Person extends Creature{
     private final float TIME_BEFORE_STARVING = 50000f;
     private final float FLEEING_SPEED = .05f;
 
-    public Person(float x, float y, SpriteSheet pS, float health) {
+    public Person(float x, float y, SpriteSheet pS, float health, String name) {
         super(x, y, pS, health);
         animRight = new Animation(pS,0,1, 3,1,true, 200,false);
 		animUp = new Animation(pS,0,2,3,2,true, 200,false);
 		animLeft = new Animation(pS,0,3,3,3,true, 200,false);
 		animDown = new Animation(pS,0,0,3,0,true, 200,false);
-
+        this.name = new Text(0,0, name);
         velocity = new Vector2f(0f,0f);
         feedButton = new Button(0,0,50,20,"Feed");
         hungerText = new Text(0,0,"Food: " + food);
@@ -55,6 +56,7 @@ public class Person extends Creature{
         food = 3;
         campfireAreaBoundary = (float)Math.random() *100f + 200f;
         setState();
+
     }
     
     public void update(GameContainer gc, int delta) {
@@ -76,27 +78,6 @@ public class Person extends Creature{
             velocity = new Vector2f(campfire.getX() - this.getX(), campfire.getY() - this.getY());
             velocity.scale(TRAVELLING_SPEED / velocity.length());
         } else if (state == States.IDLE) {
-          /*  //System.out.println("Velocity x: " + velocity.getX() + "Velocity y: " + velocity.getY() +"Random: "+ Math.random()/delta);
-            if( Math.abs(velocity.getX()) <= .00001f && Math.abs(velocity.getY()) <= 0.00001f && Math.random() / delta < .1 ) {
-                float XComponent = (float)Math.random()  *IDLE_SPEED - 2 *IDLE_SPEED;
-                float YComponent = (float)Math.sqrt(IDLE_SPEED * IDLE_SPEED - XComponent * XComponent);
-                if(Math.random()<.5) {YComponent *= -1;}
-                idleMovementTime = (int)(Math.random() * 2000 );
-                System.out.println(World.WIDTH);
-                float newX = XComponent * idleMovementTime + World.WIDTH/2;
-                float newY = YComponent * idleMovementTime + World.HEIGHT/2;
-                System.out.println("new x:"+(newX) + "new y: "+(newY) + "Current: " +x +"Current y" + y);
-
-               if(newX < CAMPFIRE_AREA_BOUNDARY + World.WIDTH /2 && newX > World.WIDTH/2 - CAMPFIRE_AREA_BOUNDARY && newY < CAMPFIRE_AREA_BOUNDARY + World.HEIGHT/2 && newY < -CAMPFIRE_AREA_BOUNDARY + World.HEIGHT/2) {
-
-                    velocity = new Vector2f(XComponent, YComponent);
-                }
-            } else {
-                idleMovementTime -= delta;
-                if(idleMovementTime <= 0) {
-                    velocity = new Vector2f(0f, 0f);
-                } */
-
         } else if(state == States.STARVING) {
             hurt(.0005f * delta);
         }
@@ -126,7 +107,8 @@ public class Person extends Creature{
     	}
     	
     	//Render UI Stuff
-    	
+    	name.setX(x);
+    	name.setY(y-height/2-40);
     	feedButton.setX(x);
     	feedButton.setY(y - height/2 - 25);
     	feedButton.render(g);
@@ -141,7 +123,7 @@ public class Person extends Creature{
         }
         hungerText.setText(food + " food");
     	hungerText.render(g);
-    	
+    	name.render(g);
     	if(thought != null) {
     		g.drawImage(ImageRes.textbubbleImg, x + 50, y);
     		g.drawString(thought, x+50 + ImageRes.textbubbleImg.getWidth()/2 - g.getFont().getWidth(thought)/2, y + 2);
