@@ -22,7 +22,6 @@ public class ImageRes {
 	public static Image grassImg;
 	public static Image mushroomImg;
 	public static Image meatImg;
-	public static Image rifleImg;
 	public static Image healthImg;
 	public static Image foodImg;
 	public static Image rifleImg;
