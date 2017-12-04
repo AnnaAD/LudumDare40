@@ -4,11 +4,7 @@ import com.ludumdare40.ImageRes;
 import com.ludumdare40.ui.Button;
 import com.ludumdare40.ui.Text;
 
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -130,18 +126,26 @@ public class Person extends Creature{
     }
     
     private void renderUI(Graphics g, float x, float y, GameContainer gc) {
-    	float panelWidth = 50;
-    	float panelHeight = 100;
-        g.setColor(Color.yellow);/*
-        g.drawRoundRect(x, y, panelWidth, panelHeight, 15);*/
-        RoundedRectangle panel = new RoundedRectangle(x-40,y-105,90f,100f,5);
+
+        g.setColor(new Color(0xc0f7b9));
+        RoundedRectangle panel = new RoundedRectangle(x-20,y-85,80f,85f,7);
         g.fill(panel);
-    	feedButton.render( gc,g,x - 40 + (90 - feedButton.getWidth())/2,y-height/2-25);
-    	healthText.setText("Health: " + (int) health);
-    	healthText.render(g, x - 40 + (90- g.getFont().getWidth(healthText.getText()))/2,y-height/2+10);
-        hungerText.setText(food + " food");
-    	hungerText.render(g,x - 40 + 90/2 - g.getFont().getWidth(hungerText.getText())/2,y-height/2-5);
-    	g.drawString(name, x - 40 + 90/2 - g.getFont().getWidth(name)/2, y-height/2-40);
+        g.setColor(Color.black);
+        g.draw(panel);
+        g.drawLine(panel.getX(),panel.getY() + 20, panel.getX() + panel.getWidth(), panel.getY() + 20);
+        g.drawString(name, panel.getX() + (panel.getWidth() - g.getFont().getWidth(name))/2, panel.getY() + 2);
+
+    	healthText.setText( (health < 10 ? " " : "")+(int) health + " X");
+    	healthText.render(g, panel.getCenterX() - (g.getFont().getWidth(healthText.getText() + 8)) /2 - 3,panel.getY() + 40);
+    	g.drawImage(ImageRes.healthImg.getScaledCopy(.5f), panel.getCenterX() + (g.getFont().getWidth(healthText.getText())) /2 -4 +3, panel.getY() + 40);
+
+        hungerText.setText( (food < 10 ? " " : "")+(int) food + " X");
+        hungerText.render(g, panel.getCenterX() - (g.getFont().getWidth(hungerText.getText() + 8)) /2 -3,panel.getY() + 22);
+        g.drawImage(ImageRes.foodImg.getScaledCopy(.5f), panel.getCenterX() + (g.getFont().getWidth(hungerText.getText())) /2 -4+3, panel.getY() + 22);
+    	/*hungerText.setText(food + " food");
+    	hungerText.render(g,x - 40 + 90/2 - g.getFont().getWidth(hungerText.getText())/2+4,y-height/2-5);*/
+        feedButton.render( gc,g,panel.getCenterX() - feedButton.getWidth()/2,panel.getY() + 58);
+        //panel.getX() - 40 + (90- g.getFont().getWidth(healthText.getText()))/2
     }
     
     public boolean checkToFeed(int x, int y) {
