@@ -136,12 +136,12 @@ public class Person extends Creature{
         g.drawRoundRect(x, y, panelWidth, panelHeight, 15);*/
         RoundedRectangle panel = new RoundedRectangle(x-40,y-105,90f,100f,5);
         g.fill(panel);
-    	feedButton.render( gc,g,x,y-height/2-25);
+    	feedButton.render( gc,g,x - 40 + (90 - feedButton.getWidth())/2,y-height/2-25);
     	healthText.setText("Health: " + (int) health);
-    	healthText.render(g, x-width/2,y-height/2+10);
+    	healthText.render(g, x - 40 + (90- g.getFont().getWidth(healthText.getText()))/2,y-height/2+10);
         hungerText.setText(food + " food");
-    	hungerText.render(g,x-width/2,y-height/2-5);
-    	g.drawString(name, x, y-height/2-40);
+    	hungerText.render(g,x - 40 + 90/2 - g.getFont().getWidth(hungerText.getText())/2,y-height/2-5);
+    	g.drawString(name, x - 40 + 90/2 - g.getFont().getWidth(name)/2, y-height/2-40);
     }
     
     public boolean checkToFeed(int x, int y) {

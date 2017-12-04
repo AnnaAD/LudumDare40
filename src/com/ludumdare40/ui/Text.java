@@ -41,4 +41,7 @@ public class Text {
 	public void setY(float y) {
 		this.y = y;
 	}
+	public String getText() {
+		return this.text;
+	}
 }
