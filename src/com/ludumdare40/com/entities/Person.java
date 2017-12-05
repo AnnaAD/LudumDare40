@@ -69,13 +69,14 @@ public class Person extends Creature{
         }
         setState();
         if(state == States.IDLE && hunger > TIME_BETWEEN_FOOD)
-            thought = "I'm feeling a little peckish.";
+            thought = "Food?";
 
         if (state == States.TRAVELING) {
             velocity = new Vector2f(campfire.getX() - this.getX(), campfire.getY() - this.getY());
             velocity.scale(TRAVELLING_SPEED / velocity.length());
         } else if (state == States.IDLE) {
         } else if(state == States.STARVING) {
+        	thought = "Starving!";
             hurt(.0005f * delta);
         }
 
