@@ -61,10 +61,10 @@ public class Game extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		camera.render(gc, gc.getGraphics(), player);
 		g.setColor(Color.white);
-		g.drawString("Food:" + player.getFood(), 10, 5);
-		g.drawString("Health:" + (int) player.getHealth(), 10, 20);
+		g.drawString("Food:" + player.getFood(), 10, 25);
+		g.drawString("Health:" + (int) player.getHealth(), 10, 40);
 		if(creatureManager.getCampfireDir() != null) {
-			g.drawString(creatureManager.getCampfireDir(), 10, 35);
+			g.drawString(creatureManager.getCampfireDir(), 10, 55);
 		}
 
 	}
