@@ -52,7 +52,7 @@ public class CreatureManager {
         if(campFactor < 1) {
         	campFactor = 1;
         }
-        if (Math.random() / (campFactor) / delta < .00002) {
+        if (Math.random() / (campFactor) / delta < .00004) {
         	System.out.println(campMembers.size() + " added monster");
             createMonster();
         }
@@ -174,6 +174,8 @@ public class CreatureManager {
     }
 
     public void generateCreatures() {
+        Person campmember = new Person(WIDTH/2, HEIGHT/2 - 500, ImageRes.getRandomPerson(), (float) Math.random() * 30f + 60f, nameGenerator.next());
+        campMembers.add(campmember);
         for (int i = 0; i < 6; i++) {
             createPerson();
         }

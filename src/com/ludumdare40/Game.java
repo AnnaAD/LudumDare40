@@ -11,8 +11,8 @@ import org.newdawn.slick.*;
 
 public class Game extends BasicGameState {
 	public static final int ID = 0;
-	private static final int WORLDWIDTH = 9000;
-	private static final int WORLDHEIGHT = 8000;
+	private static final int WORLDWIDTH = 6000;
+	private static final int WORLDHEIGHT = 6000;
 	private Camera camera;
 	private World world;
 	private CreatureManager creatureManager;
