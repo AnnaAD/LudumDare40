@@ -5,7 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Leader extends StateBasedGame {
+public class Savior extends StateBasedGame {
 
 	// Game state identifiers
 	public static final int GAME = 0;
@@ -19,7 +19,7 @@ public class Leader extends StateBasedGame {
 	public static final double VERSION = 1.0;
 
 	// Class Constructor
-	public Leader(String appName) {
+	public Savior(String appName) {
 		super(appName);
 	}
 
@@ -36,8 +36,8 @@ public class Leader extends StateBasedGame {
 	// Main Method
 	public static void main(String[] args) {
 		try {
-			AppGameContainer app = new AppGameContainer(new Leader("Leader"));
-			app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight()-20, false);
+			AppGameContainer app = new AppGameContainer(new Savior("Savior"));
+			app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), false);
 			app.setTargetFrameRate(FPS);
 			app.setShowFPS(false);
 			app.start();
