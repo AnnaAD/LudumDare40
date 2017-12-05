@@ -57,7 +57,7 @@ public class CreatureManager {
             createMonster();
         }
         
-        if (Math.random() / delta < .000015) {
+        if (Math.random() / delta < .00004) {
         	System.out.println("Added Person");
             createPerson();
         }
@@ -174,7 +174,7 @@ public class CreatureManager {
     }
 
     public void generateCreatures() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             createPerson();
         }
         for (int i = 0; i < 4; i++)
