@@ -34,7 +34,7 @@ public class Person extends Creature{
     private final float TRAVELLING_SPEED = .03f;
     private float campfireAreaBoundary;
     private final float TIME_BETWEEN_FOOD = 20000f;
-    private final float TIME_BEFORE_STARVING = 250000f;
+    private final float TIME_BEFORE_STARVING = 25000f;
     private final float FLEEING_SPEED = .05f;
 
     public Person(float x, float y, SpriteSheet pS, float health, String name) {

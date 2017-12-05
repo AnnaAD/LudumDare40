@@ -16,8 +16,8 @@ public class World {
 	public static float HEIGHT;
 	public StaticEntity campfire;
 	public Player player;
-	public final int MIN_FOOD = 70;
-	public final int DELTA_FOOD = 30;
+	public final int MIN_FOOD = 85;
+	public final int DELTA_FOOD = 40;
 
 	public ArrayList<Entity> getEntities() {
 		return entities;

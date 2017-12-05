@@ -52,12 +52,12 @@ public class CreatureManager {
         if(campFactor < 1) {
         	campFactor = 1;
         }
-        if (Math.random() / (campFactor) / delta < .00003) {
+        if (Math.random() / (campFactor) / delta < .00002) {
         	System.out.println(campMembers.size() + " added monster");
             createMonster();
         }
         
-        if (Math.random() / delta < .00004) {
+        if (Math.random() / delta < .00008) {
         	System.out.println("Added Person");
             createPerson();
         }
